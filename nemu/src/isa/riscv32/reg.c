@@ -9,7 +9,7 @@ const char *regsl[] = {
 
 void isa_reg_display() {
   for(int i = 0; i < sizeof(regsl) / sizeof(regsl[0]); i++){
-    printf("%-5s: 0x%08x\n", regsl[i], cpu.gpr[i]._32);
+    printf("%-4s: 0x%08x\n", regsl[i], cpu.gpr[i]._32);
   }
 }
 
