@@ -7,7 +7,14 @@
 #include <regex.h>
 
 enum {
-  TK_NOTYPE = 256, TK_EQ
+  TK_NOTYPE = 256, 
+  TK_EQ, 
+  TK_NEQ, 
+  TK_REG, 
+  TK_HEX, 
+  TK_DEC, 
+  TK_AND,
+  TK_PTR,
 
   /* TODO: Add more token types */
 
@@ -24,7 +31,18 @@ static struct rule {
 
   {" +", TK_NOTYPE},    // spaces
   {"\\+", '+'},         // plus
-  {"==", TK_EQ}         // equal
+  {"==", TK_EQ},         // equal
+  {"\\-", '-'},
+  {"/", '/'},
+  {"\\*", '*'},
+  {"!=", TK_NEQ},
+  {"\\(",'('},
+  {"\\)",')'},
+  {"$(0-9a-z)+", TK_REG},
+  {"(0-9)+",TK_DEC},
+  {"0(x|X)(0-9)+",TK_HEX},
+  {"&&", TK_AND},
+
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
@@ -72,7 +90,7 @@ static bool make_token(char *e) {
 
         Log("match rules[%d] = \"%s\" at position %d with len %d: %.*s",
             i, rules[i].regex, position, substr_len, substr_len, substr_start);
-        position += substr_len;
+        
 
         /* TODO: Now a new token is recognized with rules[i]. Add codes
          * to record the token in the array `tokens'. For certain types
@@ -80,9 +98,32 @@ static bool make_token(char *e) {
          */
 
         switch (rules[i].token_type) {
-          default: TODO();
-        }
+          case TK_NOTYPE :
+            break;
+          
+          case '*':
+            if (nr_token == 0 || 
+            (tokens[nr_token-1].type != ')' 
+            && tokens[nr_token-1].type != TK_DEC
+            && tokens[nr_token-1].type != TK_HEX
+            )
+            ){
+              tokens[nr_token].type = TK_PTR;
 
+            }else {
+              tokens[nr_token].type = rules[i].token_type;
+            }
+              strncpy(tokens[nr_token].str, e+position, substr_len);
+              nr_token++;            
+            break;
+
+          default :
+            tokens[nr_token].type = rules[i].token_type;
+            strncpy(tokens[nr_token].str, e+position, substr_len);
+            nr_token++;
+            break;
+        }
+        position += substr_len;
         break;
       }
     }
@@ -96,14 +137,44 @@ static bool make_token(char *e) {
   return true;
 }
 
+static int num_stack[32] __attribute__((used)) = {};
+static int sign_stack[32] __attribute__((used)) = {};
+static int num_stack_top __attribute__((used)) = 0;
+static int sign_stack_top __attribute__((used)) = 0;
+
+
+
 uint32_t expr(char *e, bool *success) {
   if (!make_token(e)) {
     *success = false;
     return 0;
   }
-
   /* TODO: Insert codes to evaluate the expression. */
-  TODO();
+  num_stack_top = 0;
+  sign_stack_top = 0;
+  for (int i = 0; i < nr_token; i++) {
+    int num = 0;
+    bool success = true;
+    switch(tokens[i].type){
+      case TK_DEC:
+        sscanf(tokens[i].str,"%d",&num);
+        num_stack[++num_stack_top] = num;
+        break;
+      case TK_HEX:
+        sscanf(tokens[i].str,"0x%x",&num);
+        num_stack[++num_stack_top] = num;
+        break;
+      case TK_REG: 
+        num = isa_reg_str2val(tokens[i].str, success);
+        num_stack[++num_stack_top] = num;
+        break;
+      case '+':
+        break;
+
+      default:
+        break;
+    }
+  }
 
   return 0;
 }
