@@ -37,7 +37,7 @@ static int cmd_q(char *args) {
 }
 
 static int cmd_info(char* args){
-  printf("info");
+  isa_reg_display();
   return 0;
 }
 
