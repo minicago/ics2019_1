@@ -38,7 +38,7 @@ static int cmd_q(char *args) {
 
 static int cmd_si(char *args){
   int step = 1;
-  if(strcmp(args,"") != 0){
+  if(args != NULL || strcmp(args,"") != 0){
     if (sscanf(args,"%d",&step) != 1){
       printf("illegal format!\n");
       return 0;
@@ -49,7 +49,10 @@ static int cmd_si(char *args){
 }
 
 static int cmd_info(char* args){
-  if (strcmp(args,"r") == 0){
+  if (args == NULL) {
+    printf("wrong subcommand!\n");
+  }
+  else if (strcmp(args,"r") == 0){
     isa_reg_display();
   } else {
     printf("wrong subcommand!\n");
