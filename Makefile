@@ -1,4 +1,6 @@
 include nemu/Makefile.git
+STUID=U202110780
+STUNAME=卞曜洋
 
 default:
 	@echo "Please run 'make' under any subprojects to compile."
