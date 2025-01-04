@@ -37,7 +37,7 @@ static int cmd_q(char *args) {
 }
 
 static int cmd_info(char* args){
-  if (strcmp(args[0],"r") == 0){
+  if (strcmp(args,"r") == 0){
     isa_reg_display();
   } else {
     printf("wrong subcommand!");
