@@ -14,10 +14,14 @@ void isa_reg_display() {
 }
 
 uint32_t isa_reg_str2val(const char *s, bool *success) {
-  success = false;
+  *success = false;
+  if (strcmp(s,'0') == 0) {
+    success = true;
+    return cpu.gpr[0]._32;
+  }
   for(int i = 0; i < sizeof(regsl) / sizeof(regsl[0]); i++){
     if(strcmp(s,regsl[i])==0){
-      success = true;
+      *success = true;
       return cpu.gpr[i]._32;
     }
   }

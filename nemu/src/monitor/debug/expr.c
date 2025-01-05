@@ -137,12 +137,80 @@ static bool make_token(char *e) {
   return true;
 }
 
-static int num_stack[32] __attribute__((used)) = {};
+static int32_t num_stack[32] __attribute__((used)) = {};
 static int sign_stack[32] __attribute__((used)) = {};
 static int num_stack_top __attribute__((used)) = 0;
 static int sign_stack_top __attribute__((used)) = 0;
 
+int priority_of_sign(int type){
+  switch (type)
+  {
+  case '(':
+    return 0;
+    /* code */
+  case TK_PTR:
+    return 1;
+  case '*':
+  case '/':
+    return 2;
+  case '+':
+  case '-':
+    return 3;
+  case TK_EQ:
+  case TK_NEQ:
+    return 4;
+  case TK_AND:
+    return 5;
+  case ')':
+    return 6;   
+  
+  default:
+    return -1;
+  }
+}
 
+int conduct_sign(int type){
+  switch (type)
+  {
+  case '(':
+    return 1;
+    /* code */
+  case TK_PTR:
+    num_stack[num_stack_top - 1] = vaddr_read(num_stack[num_stack_top - 1], sizeof(uint32_t));
+    break;  
+  case '*':
+    num_stack_top--;
+    num_stack[num_stack_top - 1] = num_stack[num_stack_top - 1] * num_stack[num_stack_top];
+    break;  
+  case '/':
+    num_stack_top--;
+    num_stack[num_stack_top - 1] = num_stack[num_stack_top - 1] / num_stack[num_stack_top];
+    break;  
+  case '+':
+    num_stack_top--;
+    num_stack[num_stack_top - 1] = num_stack[num_stack_top - 1] + num_stack[num_stack_top];
+    break;  
+  case '-':
+    num_stack_top--;
+    num_stack[num_stack_top - 1] = num_stack[num_stack_top - 1] - num_stack[num_stack_top];
+    break;  
+  case TK_EQ:
+    num_stack_top--;
+    num_stack[num_stack_top - 1] = num_stack[num_stack_top - 1] == num_stack[num_stack_top];
+    break;
+  case TK_NEQ:
+    num_stack_top--;
+    num_stack[num_stack_top - 1] = num_stack[num_stack_top - 1] != num_stack[num_stack_top];
+    break;
+  case TK_AND:
+    num_stack_top--;
+    num_stack[num_stack_top - 1] = num_stack[num_stack_top - 1] && num_stack[num_stack_top];
+    break;
+  default:
+    return 0;
+  }
+  return 0;
+}
 
 uint32_t expr(char *e, bool *success) {
   if (!make_token(e)) {
@@ -150,31 +218,36 @@ uint32_t expr(char *e, bool *success) {
     return 0;
   }
   /* TODO: Insert codes to evaluate the expression. */
+  success = true;
   num_stack_top = 0;
   sign_stack_top = 0;
   for (int i = 0; i < nr_token; i++) {
     int num = 0;
-    bool success = true;
+    bool subsuccess = true;
     switch(tokens[i].type){
       case TK_DEC:
         sscanf(tokens[i].str,"%d",&num);
-        num_stack[++num_stack_top] = num;
+        num_stack[num_stack_top++] = num;
         break;
       case TK_HEX:
         sscanf(tokens[i].str,"0x%x",&num);
-        num_stack[++num_stack_top] = num;
+        num_stack[num_stack_top++] = num;
         break;
       case TK_REG: 
-        num = isa_reg_str2val(tokens[i].str, success);
-        num_stack[++num_stack_top] = num;
-        break;
-      case '+':
+        num = isa_reg_str2val(tokens[i].str + 1, subsuccess);
+        num_stack[num_stack_top++] = num;
         break;
 
       default:
+        while(sign_stack_top > 0 && priority_of_sign(tokens[i].type) > priority_of_sign(sign_stack[sign_stack_top - 1]) ){
+          if(conduct_sign(sign_stack[--sign_stack_top])) break;
+        }
+        if(tokens[i].type != ')') sign_stack[sign_stack_top++] = tokens[i].type;
         break;
-    }
+    }    
   }
-
-  return 0;
+  while(sign_stack_top > 0){
+    conduct_sign(sign_stack[--sign_stack_top]);
+  }
+  return num_stack[0];
 }

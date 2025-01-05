@@ -62,8 +62,15 @@ static int cmd_info(char* args){
 }
 
 static int cmd_x(char* args){
-
-
+  bool success;
+  int n;
+  char buf[256];
+  sscanf(args, "%d %s",&n, buf);
+  uint32_t ptr = expr(buf, &success);
+  for(int i = 0; i < n; i++){
+    printf("0x%x\n",vaddr_read(ptr + 4 * i, 4));
+  }
+  return 0;
 }
 
 static int cmd_help(char *args);
