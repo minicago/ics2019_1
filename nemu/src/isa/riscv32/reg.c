@@ -15,7 +15,7 @@ void isa_reg_display() {
 
 uint32_t isa_reg_str2val(const char *s, bool *success) {
   *success = false;
-  printf("reg:%s\n",s);
+  // printf("reg:%s\n",s);
   if (strcmp(s,"0") == 0) {
     *success = true;
     return cpu.gpr[0]._32;
