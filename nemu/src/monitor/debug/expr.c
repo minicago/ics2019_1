@@ -235,7 +235,7 @@ uint32_t expr(char *e, bool *success) {
         num_stack[num_stack_top++] = num;
         break;
       case TK_REG: 
-        num = isa_reg_str2val(tokens[i].str + 1, subsuccess);
+        num = isa_reg_str2val(tokens[i].str + 1, &subsuccess);
         num_stack[num_stack_top++] = num;
         break;
 
