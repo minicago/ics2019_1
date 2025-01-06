@@ -70,6 +70,9 @@ void cpu_exec(uint64_t n) {
     extern void device_update();
     device_update();
 #endif
+    if (watch_wp()) {
+      nemu_state.state = NEMU_STOP;
+    }
 
     if (nemu_state.state != NEMU_RUNNING) break;
   }

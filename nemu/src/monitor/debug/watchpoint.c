@@ -20,4 +20,28 @@ void init_wp_pool() {
 
 /* TODO: Implement the functionality of watchpoint */
 
+WP* new_wp(){
+  WP* tmp = free_;
+  free_ = tmp->next;
+  tmp->next = head;
+  head = tmp;
+  return tmp;
+}
 
+void free_wp(WP *wp){
+  wp->next = free_;
+  free_ = wp;
+}
+
+bool watch_wp(){
+  bool success = true;
+  bool flag = false;
+  for(WP* wp = head; wp != NULL; wp = wp->next){
+    int num = expr(wp->str, &success);
+    if(wp->old_value != num){
+      printf("watch point NO.%d: %s : (0x%x -> 0x%x)\n", wp->NO, wp->str, wp->old_value, num);
+      flag = true;
+    }
+  }
+  return flag;
+}
