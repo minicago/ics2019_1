@@ -219,7 +219,7 @@ uint32_t expr(char *e, bool *success) {
     return 0;
   }
   /* TODO: Insert codes to evaluate the expression. */
-  success = true;
+  *success = true;
   num_stack_top = 0;
   sign_stack_top = 0;
   for (int i = 0; i < nr_token; i++) {
