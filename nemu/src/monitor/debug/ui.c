@@ -63,6 +63,18 @@ static int cmd_info(char* args){
   return 0;
 }
 
+static int cmd_p(char* args){
+  bool success = false;
+  uint32_t old_value = expr(args, &success);
+  if(!success){
+    printf("bad expr!");
+    return 0;
+  } else {
+    printf("0x%x\n",old_value);
+  }  
+  return 0;
+}
+
 static int cmd_x(char* args){
   bool success;
   int n;
@@ -77,7 +89,7 @@ static int cmd_x(char* args){
 
 static int cmd_w(char* args){
   bool success = false;
-  int old_value = expr(args, &success);
+  uint32_t old_value = expr(args, &success);
   if(!success){
     printf("bad expr!");
     return 0;
@@ -110,6 +122,7 @@ static struct {
   { "q", "Exit NEMU", cmd_q },
   { "si", "run N instructions", cmd_si},
   { "info", "print program state", cmd_info },
+  { "p", "calculate expression", cmd_p },
   { "x", "scan memory", cmd_x },
   { "w", "add watch point", cmd_w},
   { "d", "delete watch point", cmd_d},
