@@ -17,5 +17,6 @@ WP* new_wp();
 void free_wp(WP *wp);
 
 bool watch_wp();
+void list_wp();
 
 #endif

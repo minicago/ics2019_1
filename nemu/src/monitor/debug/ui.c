@@ -54,7 +54,9 @@ static int cmd_info(char* args){
   }
   else if (strcmp(args,"r") == 0){
     isa_reg_display();
-  } else {
+  } else if (strcmp(args,"w") == 0){
+    list_wp();
+  }{
     printf("wrong subcommand!\n");
   }
 

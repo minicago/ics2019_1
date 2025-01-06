@@ -45,3 +45,9 @@ bool watch_wp(){
   }
   return flag;
 }
+
+void list_wp(){
+  for(WP* wp = head; wp != NULL; wp = wp->next){
+    printf("watch point NO.%d: %s : (0x%x)\n", wp->NO, wp->str, wp->old_value);
+  }
+}
