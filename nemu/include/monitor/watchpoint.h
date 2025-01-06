@@ -18,5 +18,6 @@ void free_wp(WP *wp);
 
 bool watch_wp();
 void list_wp();
+WP* wp_NO(int NO);
 
 #endif

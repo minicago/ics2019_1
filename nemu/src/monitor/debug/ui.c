@@ -75,6 +75,29 @@ static int cmd_x(char* args){
   return 0;
 }
 
+static int cmd_w(char* args){
+  bool success = false;
+  int old_value = expr(args, &success);
+  if(!success){
+    printf("bad expr!");
+    return 0;
+  }
+  WP* wp = new_wp();
+  strcpy(wp->str, args);
+  wp->old_value = old_value;
+  list_wp();
+  return 0;
+}
+
+static int cmd_d(char* args){
+  int x;
+  if(args == NULL || sscanf("%d",&x) != 1){
+    return 0;
+  }
+  free_wp(wp_NO(x));
+  return 0;
+}
+
 static int cmd_help(char *args);
 
 static struct {
@@ -88,6 +111,8 @@ static struct {
   { "si", "run N instructions", cmd_si},
   { "info", "print program state", cmd_info },
   { "x", "scan memory", cmd_x },
+  { "w", "add watch point", cmd_w},
+  { "d", "delete watch point", cmd_d},
 
   /* TODO: Add more commands */
 

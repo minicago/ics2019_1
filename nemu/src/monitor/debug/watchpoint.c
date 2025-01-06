@@ -28,9 +28,31 @@ WP* new_wp(){
   return tmp;
 }
 
+WP* wp_NO(int NO){
+  return wp_pool + NO;
+}
+
 void free_wp(WP *wp){
+  bool success = false;
+  if(head == wp){
+    head = wp->next;
+    success = true;
+  }
+  else{
+    
+    for(WP* p = head; p->next != NULL; p = p->next){
+      if(p->next == wp){
+        p->next=p->next->next;
+        success = true;
+        break;
+      }
+    }
+  }
+ if(success){
   wp->next = free_;
-  free_ = wp;
+  free_ = wp;    
+ }
+  
 }
 
 bool watch_wp(){
