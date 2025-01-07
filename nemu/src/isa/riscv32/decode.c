@@ -63,5 +63,4 @@ make_DHelper(J) {
   (decinfo.isa.instr.simm20 << 20) | (decinfo.isa.instr.imm19_12 << 12) | (decinfo.isa.instr.imm19_12 << 12) | (decinfo.isa.instr.imm11_ << 11) | (decinfo.isa.instr.imm10_1 << 1),
   true);
   decode_op_r(id_dest, decinfo.isa.instr.rd, false);
-  decode_op_r(id_dest, decinfo.isa.instr.rd, false);  
 }
