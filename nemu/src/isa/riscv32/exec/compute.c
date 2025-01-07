@@ -6,7 +6,13 @@ make_EHelper(lui) {
   print_asm_template2(lui);
 }
 
+make_EHelper(auipc) {
+  rtl_addi(id_dest->reg, &(cpu.pc) ,id_src->simm);
+  
+  print_asm_template2(auipc);
+}
+
 make_EHelper(addi){
-  rtl_addi(id_dest, &id_src->val, id_src->imm);
+  rtl_addi(id_dest, &id_src->val, id_src2->simm);
   print_asm_template2(addi);
 }
