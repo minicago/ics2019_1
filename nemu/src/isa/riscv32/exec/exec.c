@@ -19,13 +19,13 @@ static make_EHelper(store) {
   idex(pc, &store_table[decinfo.isa.instr.funct3]);
 }
 
-static OpcodeEntry i_compute_table [8] = {
+static OpcodeEntry compute_i_table [8] = {
   EXW(addi, 4), EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY
 };
 
-static make_EHelper(i_compute) {
-  decinfo.width = i_compute_table[decinfo.isa.instr.funct3].width;
-  idex(pc, &i_compute_table[decinfo.isa.instr.funct3]);  
+static make_EHelper(compute_i) {
+  decinfo.width = compute_i_table[decinfo.isa.instr.funct3].width;
+  idex(pc, &compute_i_table[decinfo.isa.instr.funct3]);  
 
 }
 
