@@ -1,5 +1,9 @@
 #include "cpu/exec.h"
 make_EHelper(jal){
   rtl_li(id_dest, *pc + id_src->simm + 4);
-  pc = *pc + id_src->simm + 4;
+  *pc = *pc + id_src->simm + 4;
+}
+
+make_EHelper(ret){
+    *pc = (vaddr_t) cpu.gpr[1]._32;
 }

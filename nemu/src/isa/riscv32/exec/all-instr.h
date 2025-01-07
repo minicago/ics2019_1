@@ -11,3 +11,4 @@ make_EHelper(nemu_trap);
 
 make_EHelper(addi);
 make_EHelper(jal);
+make_EHelper(ret);
