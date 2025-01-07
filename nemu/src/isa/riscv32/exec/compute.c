@@ -7,7 +7,7 @@ make_EHelper(lui) {
 }
 
 make_EHelper(auipc) {
-printf("%x\n",*(&(cpu.pc)));  
+printf("%x\n",(id_dest->reg));  
   rtl_addi(id_dest->reg, &(cpu.pc) ,id_src->simm);
 
   print_asm_template2(auipc);
