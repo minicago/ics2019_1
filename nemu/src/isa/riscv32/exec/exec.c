@@ -36,7 +36,6 @@ static OpcodeEntry opcode_table [32] = {
   /* b11 */ EMPTY, EMPTY, EX(nemu_trap), EMPTY, EMPTY, EMPTY, EMPTY, EMPTY,
 };
 void isa_exec(vaddr_t *pc) {
-  printf("in isa_exec\n");
   decinfo.isa.instr.val = instr_fetch(pc, 4);
   assert(decinfo.isa.instr.opcode1_0 == 0x3);
   // printf("id: %x\n",decinfo.isa.instr.opcode6_2);
