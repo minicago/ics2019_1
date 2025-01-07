@@ -19,17 +19,26 @@ static make_EHelper(store) {
   idex(pc, &store_table[decinfo.isa.instr.funct3]);
 }
 
+static OpcodeEntry i_compute_table [8] = {
+  EXW(addi, 4), EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY
+};
+
+static make_EHelper(i_compute) {
+  decinfo.width = i_compute_table[decinfo.isa.instr.funct3].width;
+  idex(pc, &i_compute_table[decinfo.isa.instr.funct3]);  
+
+}
+
 static OpcodeEntry opcode_table [32] = {
-  /* b00 */ IDEX(ld, load), EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY,
+  /* b00 */ IDEX(ld, load), EMPTY, EMPTY, EMPTY, IDEX(compute_i,compute_i), EMPTY, EMPTY, EMPTY,
   /* b01 */ IDEX(st, store), EMPTY, EMPTY, EMPTY, EMPTY, IDEX(U, lui), EMPTY, EMPTY,
   /* b10 */ EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY,
   /* b11 */ EMPTY, EMPTY, EX(nemu_trap), EMPTY, EMPTY, EMPTY, EMPTY, EMPTY,
 };
-
 void isa_exec(vaddr_t *pc) {
   printf("in isa_exec\n");
   decinfo.isa.instr.val = instr_fetch(pc, 4);
   assert(decinfo.isa.instr.opcode1_0 == 0x3);
-  printf("id: %x\n",decinfo.isa.instr.opcode6_2);
+  // printf("id: %x\n",decinfo.isa.instr.opcode6_2);
   idex(pc, &opcode_table[decinfo.isa.instr.opcode6_2]);
 }
