@@ -8,6 +8,7 @@
 #define rtl_li        concat(RTL_PREFIX, _rtl_li      )
 #define rtl_mv        concat(RTL_PREFIX, _rtl_mv      )
 #define rtl_add       concat(RTL_PREFIX, _rtl_add     )
+#define rtl_slt       concat(RTL_PREFIX, _rtl_slt     )
 #define rtl_sub       concat(RTL_PREFIX, _rtl_sub     )
 #define rtl_and       concat(RTL_PREFIX, _rtl_and     )
 #define rtl_or        concat(RTL_PREFIX, _rtl_or      )
