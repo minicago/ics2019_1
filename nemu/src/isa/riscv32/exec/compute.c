@@ -9,7 +9,7 @@ make_EHelper(auipc) {
   printf("%x\n", *pc + id_src->simm); 
 
   rtl_addi(&reg_l(id_dest->reg), pc , id_src->simm);
-  printf("%x %d\n",id_dest->reg, reg_l(2));
+  printf("%x %x\n",id_dest->reg, reg_l(2));
   print_asm_template2(auipc);
 }
 
