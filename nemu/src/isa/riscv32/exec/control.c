@@ -9,6 +9,7 @@ make_EHelper(jal){
 }
 
 make_EHelper(jalr){
+  printf("ok");
   rtl_addi(&reg_l(id_dest->reg), pc , 4);
   rtl_addi(&t0, &reg_l(id_src->reg), id_src2->simm);
   rtl_jr(t0);
