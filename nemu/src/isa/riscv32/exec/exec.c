@@ -20,7 +20,7 @@ static make_EHelper(store) {
 }
 
 static OpcodeEntry compute_i_table [8] = {
-  EXW(addi, 4), EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY
+  EXW(addi, 4),EXW(shli, 4), EXW(slti, 4), EXW(sltiu, 4), EXW(xori, 4),EXW(shri, 4), EXW(ori, 4), EXW(andi,4),  
 };
 
 static make_EHelper(compute_i) {

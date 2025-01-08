@@ -32,8 +32,19 @@ make_EHelper(sltiu){
 make_IUAEHelper(xori)
 make_IUAEHelper(ori)
 make_IUAEHelper(andi)
-make_IUAEHelper(slli)
-make_IUAEHelper(srli)
-make_IUAEHelper(srai)
+make_EHelper(shli){
+  rtl_shl (&reg_l(id_dest->reg), &id_src->val, id_src2->imm);
+  print_asm_template2(slli);
+}
+make_EHelper(shri){
+  if (id_src2->imm & (1 << 10)) {
+    rtl_sari(&reg_l(id_dest->reg), &id_src->val, (0x1f) | id_src2->imm);
+    print_asm_template2(srai);
+  } else {
+    rtl_shri(&reg_l(id_dest->reg), &id_src->val, (0x1f) | id_src2->imm);
+    print_asm_template2(srli);
+  }
+}
+
 
 
