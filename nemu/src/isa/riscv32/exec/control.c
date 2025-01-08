@@ -6,5 +6,5 @@ make_EHelper(jal){
 }
 
 make_EHelper(ret){
-    *pc = (vaddr_t) cpu.gpr[1]._32;
+    *pc = (vaddr_t) reg_l(1);
 }
