@@ -13,7 +13,7 @@ typedef struct {
   uint32_t type;
   int width;
   union {
-    char reg;
+    byte reg;
     rtlreg_t addr;
     uint32_t imm;
     int32_t simm;
