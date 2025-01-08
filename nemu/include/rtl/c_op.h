@@ -3,6 +3,7 @@
 
 #define c_add(a, b) ((a) + (b))
 #define c_sub(a, b) ((a) - (b))
+#define c_slt(a, b) ((a) < (b))
 #define c_and(a, b) ((a) & (b))
 #define c_or(a, b)  ((a) | (b))
 #define c_xor(a, b) ((a) ^ (b))
