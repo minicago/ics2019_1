@@ -26,14 +26,22 @@ static OpcodeEntry compute_i_table [8] = {
 static make_EHelper(compute_i) {
   decinfo.width = compute_i_table[decinfo.isa.instr.funct3].width;
   idex(pc, &compute_i_table[decinfo.isa.instr.funct3]);  
+}
 
+static OpcodeEntry compute_r_table [8] = {
+  EXW(addi, 4),EXW(shli, 4), EXW(slti, 4), EXW(sltiu, 4), EXW(xori, 4),EXW(shri, 4), EXW(ori, 4), EXW(andi,4),  
+};
+
+static make_EHelper(compute_r) {
+  decinfo.width = compute_r_table[decinfo.isa.instr.funct3].width;
+  idex(pc, &compute_r_table[decinfo.isa.instr.funct3]);  
 }
 
 static OpcodeEntry opcode_table [32] = {
-  /* b00 */ IDEX(ld, load), EMPTY, EMPTY, EMPTY, IDEX(I,compute_i), IDEX(U, auipc), EMPTY, EMPTY,
-  /* b01 */ IDEX(st, store), EMPTY, EMPTY, EMPTY, EMPTY, IDEX(U, lui), EMPTY, EMPTY,
+  /* b00 */ IDEX(ld, load), EMPTY, EMPTY, EMPTY, IDEX(IR,compute_i), IDEX(U, auipc), EMPTY, EMPTY,
+  /* b01 */ IDEX(st, store), EMPTY, EMPTY, EMPTY, IDEX(IR,compute_r), IDEX(U, lui), EMPTY, EMPTY,
   /* b10 */ EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY,
-  /* b11 */ EMPTY, IDEX(I, jalr), EX(nemu_trap), IDEX(J, jal), EMPTY, EMPTY, EMPTY, EMPTY,
+  /* b11 */ EMPTY, IDEX(IR, jalr), EX(nemu_trap), IDEX(J, jal), EMPTY, EMPTY, EMPTY, EMPTY,
 };
 void isa_exec(vaddr_t *pc) {
   decinfo.isa.instr.val = instr_fetch(pc, 4);

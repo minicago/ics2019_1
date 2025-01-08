@@ -36,12 +36,19 @@ make_EHelper(shli){
   rtl_shl (&reg_l(id_dest->reg), &id_src->val, id_src2->imm);
   print_asm_template2(slli);
 }
+
+#define shamt(x) (x & 0x1f)
+#define TYPE1 if(id_src2->imm & (1 << 10))
+#define TYPE2 if(!(id_src2->imm & (1 << 10)))
+
 make_EHelper(shri){
-  if (id_src2->imm & (1 << 10)) {
-    rtl_sari(&reg_l(id_dest->reg), &id_src->val, (0x1f) | id_src2->imm);
+  TYPE1 {
+    rtl_sari(&reg_l(id_dest->reg), &id_src->val, shamt(id_src2->imm));
     print_asm_template2(srai);
-  } else {
-    rtl_shri(&reg_l(id_dest->reg), &id_src->val, (0x1f) | id_src2->imm);
+  } 
+  
+  TYPE2 {
+    rtl_shri(&reg_l(id_dest->reg), &id_src->val, shamt(id_src2->imm));
     print_asm_template2(srli);
   }
 }
