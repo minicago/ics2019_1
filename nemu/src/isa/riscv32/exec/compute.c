@@ -24,30 +24,16 @@ make_EHelper(auipc) {
   }
 
 make_ISAEHelper(addi)
+make_ISAEHelper(slti)
+make_EHelper(sltiu){ 
+  rtl_slti (&reg_l(id_dest->reg), &id_src->val, id_src2->imm);
+  print_asm_template2(sltiu); 
+}
+make_IUAEHelper(xori)
+make_IUAEHelper(ori)
+make_IUAEHelper(andi)
+make_IUAEHelper(slli)
+make_IUAEHelper(srli)
+make_IUAEHelper(srai)
 
-// make_EHelper(addi){
-//   rtl_addi(&reg_l(id_dest->reg), &id_src->val, id_src2->simm);
-//   print_asm_template2(addi);
-// }
-
-// make_EHelper(slti){
-//   rtl_slti(&reg_l(id_dest->reg), &id_src->val, id_src2->simm);
-//   print_asm_template2(addi);
-// }
-// make_EHelper(sltiu){
-//   rtl_slti(&reg_l(id_dest->reg), &id_src->val, id_src2->imm);
-//   print_asm_template2(addi);  
-// }
-// make_EHelper(xori){
-//   rtl_xori(&reg_l(id_dest->reg), &id_src->val, id_src2->imm);
-//   print_asm_template2(addi);  
-// }
-// make_EHelper(ori){
-//   rtl_xori(&reg_l(id_dest->reg), &id_src->val, id_src2->imm);
-//   print_asm_template2(addi);    
-// }
-// make_EHelper(andi);
-// make_EHelper(slli);
-// make_EHelper(srli);
-// make_EHelper(srai);
 
