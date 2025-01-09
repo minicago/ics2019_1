@@ -55,6 +55,7 @@ make_EHelper(shri){
 #define R_arg &reg_l(id_dest->reg),&id_src->val, &id_src2->val
 
 make_EHelper(add){
+  printf("%d %d %d \n",decinfo.isa.instr.funct7 & (1 << 5), id_src->val, id_src2->val);
   TYPE1 {
     rtl_add(R_arg);
     print_asm_template3(add);
