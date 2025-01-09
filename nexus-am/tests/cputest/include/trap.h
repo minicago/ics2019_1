@@ -6,10 +6,18 @@
 #include <stdio.h>
 
 __attribute__((noinline))
-void nemu_assert(int cond) {
+void nemu_assert_(int cond) {
+
   if (!cond) {
     _halt(1);
   }
 }
+
+#define nemu_assert(cond) do{ \
+  printf(#cond); \
+  nemu_assert_(cond); \
+  } while (0)
+  
+  
 
 #endif
