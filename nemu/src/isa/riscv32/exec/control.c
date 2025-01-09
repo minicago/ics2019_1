@@ -16,6 +16,6 @@ make_EHelper(jalr){
 }
 
 make_EHelper(B){
-  rtl_addi(&t0, pc, id_dest->simm);
+  rtl_addi(&t0, pc, id_dest->simm + 4);
   rtl_jrelop(decinfo.isa.instr.funct3, &reg_l(id_src->reg), &reg_l(id_src2->reg), t0);
 }

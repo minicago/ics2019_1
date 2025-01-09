@@ -59,6 +59,6 @@ make_DHelper(I);
 make_DHelper(R);
 make_DHelper(J);
 make_DHelper(shamt);
-make_DHelper(D);
+make_DHelper(B);
 
 #endif
