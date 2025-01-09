@@ -52,6 +52,5 @@ void isa_exec(vaddr_t *pc) {
   assert(decinfo.isa.instr.opcode1_0 == 0x3);
   // printf("id: %x\n",decinfo.isa.instr.opcode6_2);
   idex(pc, &opcode_table[decinfo.isa.instr.opcode6_2]);
-  printf(" jmp?%d \n", decinfo.is_jmp);
   
 }
