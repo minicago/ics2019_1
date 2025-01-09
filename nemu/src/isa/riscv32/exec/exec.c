@@ -47,7 +47,7 @@ void isa_exec(vaddr_t *pc) {
   decinfo.isa.instr.val = instr_fetch(&decinfo.seq_pc, 4);
   printf("0x%x %x\n",*pc, decinfo.isa.instr.val);
   if(*pc==0x80100084) {
-    printf("add %x %x\n", reg_l(10), reg_l(11));
+    printf("add %x %x\n", reg_l(10), reg_l(15));
   }
   assert(decinfo.isa.instr.opcode1_0 == 0x3);
   // printf("id: %x\n",decinfo.isa.instr.opcode6_2);
