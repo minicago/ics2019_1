@@ -34,7 +34,7 @@ make_IUAEHelper(andi)
 make_EHelper(shli){
   printf("%x\n",id_src2->imm);
   printf("%x\n",id_src->val);
-  rtl_shl (&reg_l(id_dest->reg), &id_src->val, id_src2->imm);
+  rtl_shli (&reg_l(id_dest->reg), &id_src->val, id_src2->imm);
   printf("ok!");
   print_asm_template3(slli);
 }
