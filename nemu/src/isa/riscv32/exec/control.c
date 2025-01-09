@@ -18,7 +18,11 @@ make_EHelper(jalr){
   rtl_j(t0);
 }
 
+uint32_t relop_table[] = {
+  RELOP_EQ, RELOP_NE, RELOP_FALSE, RELOP_FALSE, RELOP_LT, RELOP_GE, RELOP_LTU, RELOP_GEU
+};
+
 make_EHelper(B){
-  rtl_addi(&t0, pc, id_dest->simm + 4);
-  rtl_jrelop(decinfo.isa.instr.funct3, &reg_l(id_src->reg), &reg_l(id_src2->reg), t0);
+  rtl_addi(&t0, pc, id_dest->simm);
+  rtl_jrelop(relop_table[decinfo.isa.instr.funct3], &id_src->val, &id_src2->val, t0);
 }
