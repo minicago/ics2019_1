@@ -44,12 +44,12 @@ static OpcodeEntry opcode_table [32] = {
   /* b11 */ IDEX(B, B), IDEX(I, jalr), EX(nemu_trap), IDEX(J, jal), EMPTY, EMPTY, EMPTY, EMPTY,
 };
 void isa_exec(vaddr_t *pc) {
-  decinfo.seq_pc = *pc;
+  vaddr_t current_pc = *pc;
   decinfo.isa.instr.val = instr_fetch(&decinfo.seq_pc, 4);
   printf("0x%x %x:",*pc, decinfo.isa.instr.val);
   assert(decinfo.isa.instr.opcode1_0 == 0x3);
   // printf("id: %x\n",decinfo.isa.instr.opcode6_2);
-  idex(pc, &opcode_table[decinfo.isa.instr.opcode6_2]);
+  idex(&current_pc, &opcode_table[decinfo.isa.instr.opcode6_2]);
   printf(" jmp?%d \n", decinfo.is_jmp);
   
 }
