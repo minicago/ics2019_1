@@ -37,8 +37,8 @@ make_EHelper(shli){
 }
 
 
-#define TYPE1 if(decinfo.isa.instr.funct7 & (1 << 5))
-#define TYPE2 if(!(decinfo.isa.instr.funct7 & (1 << 5)))
+#define TYPE1 if(!(decinfo.isa.instr.funct7 & (1 << 5)))
+#define TYPE2 if((decinfo.isa.instr.funct7 & (1 << 5)))
 
 make_EHelper(shri){
   TYPE1 {
