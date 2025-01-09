@@ -59,7 +59,7 @@ make_DHelper(I) {
 }
 
 make_DHelper(shamt) {
-  decode_i(id_src2, decinfo.isa.instr.rs2, true);
+  decode_op_i(id_src2, decinfo.isa.instr.rs2, true);
 }
 
 make_DHelper(J) {
