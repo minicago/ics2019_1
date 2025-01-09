@@ -37,6 +37,7 @@ make_EHelper(shli){
 
 
   rtl_shl (&reg_l(id_dest->reg), &id_src->val, id_src2->imm);
+  printf("ok!\n");
   print_asm_template3(slli);
 }
 
