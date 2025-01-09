@@ -12,13 +12,13 @@ make_EHelper(auipc) {
 
 #define make_ISAEHelper(name) \
   make_EHelper(name){ \
-    concat(rtl_, name)(&reg_l(id_dest->reg), &reg_l(id_src->reg), id_src2->simm);\
+    concat(rtl_, name)(&reg_l(id_dest->reg), &id_src->reg, id_src2->simm);\
     print_asm_template3(name); \
   }
 
 #define make_IUAEHelper(name) \
   make_EHelper(name){ \
-    concat(rtl_, name)(&reg_l(id_dest->reg), &reg_l(id_src->reg), (0x7ff) & id_src2->imm);\
+    concat(rtl_, name)(&reg_l(id_dest->reg), &id_src->val, id_src2->imm);\
     print_asm_template3(name); \
   }
 
@@ -32,12 +32,10 @@ make_IUAEHelper(xori)
 make_IUAEHelper(ori)
 make_IUAEHelper(andi)
 make_EHelper(shli){
-  printf("%x\n",reg_l(id_dest->reg));
-  printf("%x\n",id_src->val);
-
+  printf("%d\n",&reg_l(id_dest->reg));
+  printf("%d\n",&id_src->val);
 
   rtl_shl (&reg_l(id_dest->reg), &id_src->val, id_src2->imm);
-  printf("ok!\n");
   print_asm_template3(slli);
 }
 
