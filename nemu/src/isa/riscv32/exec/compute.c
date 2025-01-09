@@ -12,7 +12,7 @@ make_EHelper(auipc) {
 
 #define make_ISAEHelper(name) \
   make_EHelper(name){ \
-    concat(rtl_, name)(&reg_l(id_dest->reg), &id_src->reg, id_src2->simm);\
+    concat(rtl_, name)(&reg_l(id_dest->reg), &id_src->val, id_src2->simm);\
     print_asm_template3(name); \
   }
 
@@ -34,7 +34,7 @@ make_IUAEHelper(andi)
 make_EHelper(shli){
   printf("%d\n",&reg_l(id_dest->reg));
   printf("%d\n",&id_src->val);
-
+  
   rtl_shl (&reg_l(id_dest->reg), &id_src->val, id_src2->imm);
   print_asm_template3(slli);
 }
