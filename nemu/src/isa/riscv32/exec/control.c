@@ -2,11 +2,11 @@
 make_EHelper(jal){
     // printf("jal %x\n",*pc + id_src->simm + 4);
   rtl_addi(&reg_l(id_dest->reg), pc , 4);
-  rtl_addi(&t0, pc, id_src->simm);
+  // rtl_addi(&t0, pc, id_src->simm);
   // printf("%x\n",t0);
   print_asm_template2(jal);
-  printf("to:%x",t0);
-  rtl_j(t0);
+  printf("to:%x",id_src->imm);
+  rtl_j(id_src->imm);
   // *pc = *pc + id_src->simm + 4;
 }
 
