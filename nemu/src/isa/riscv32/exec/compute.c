@@ -12,7 +12,7 @@ make_EHelper(auipc) {
 
 #define make_ISAEHelper(name) \
   make_EHelper(name){ \
-    concat(rtl_, name)(&reg_l(id_dest->reg), &id_src->val, id_src2->simm);\
+    concat(rtl_, name)(&reg_l(id_dest->reg), &reg_l(id_src->reg), id_src2->simm);\
     print_asm_template3(name); \
   }
 
