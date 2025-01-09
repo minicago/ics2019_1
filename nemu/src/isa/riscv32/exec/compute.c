@@ -46,12 +46,15 @@ make_EHelper(shri){
     rtl_sari(&reg_l(id_dest->reg), &id_src->val, shamt(id_src2->imm));
     print_asm_template2(srai);
   } 
-  
+
   TYPE2 {
     rtl_shri(&reg_l(id_dest->reg), &id_src->val, shamt(id_src2->imm));
     print_asm_template2(srli);
   }
 }
 
+make_EHelper(add){
+  
+}
 
 
