@@ -5,6 +5,7 @@ make_EHelper(jal){
   rtl_addi(&t0, pc, id_src->simm);
   // printf("%x\n",t0);
   print_asm_template2(jal);
+  printf("to:%x",t0);
   rtl_j(t0);
   // *pc = *pc + id_src->simm + 4;
 }
@@ -16,7 +17,7 @@ make_EHelper(jalr){
   rtl_addi(&t0, &reg_l(id_src->reg), id_src2->simm);
   rtl_andi(&t0,&t0,~1);
   print_asm_template3(jalr);
- 
+ printf("to:%x",t0);
   rtl_j(t0);
 }
 
