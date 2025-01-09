@@ -20,7 +20,7 @@ static make_EHelper(store) {
 }
 
 static OpcodeEntry compute_i_table [8] = {
-  EXW(addi, 4), IDEX(shamt, shli), EXW(slti, 4), EXW(sltiu, 4), EXW(xori, 4),IDEX(shamt, shri), EXW(ori, 4), EXW(andi,4),  
+  EX(addi), IDEX(shamt, shli), EX(slti), EX(sltiu), EX(xori),IDEX(shamt, shri), EX(ori), EX(andi),  
 };
 
 static make_EHelper(compute_i) {
@@ -29,7 +29,7 @@ static make_EHelper(compute_i) {
 }
 
 static OpcodeEntry compute_r_table [8] = {
-  EXW(add, 4),EXW(shl, 4), EXW(slt, 4), EXW(sltu, 4), EXW(xor, 4),EXW(shr, 4), EXW(or, 4), EXW(and,4),  
+  EX(add),EX(shl), EX(slt), EX(sltu), EX(xor),EX(shr), EX(or), EX(and),  
 };
 
 static make_EHelper(compute_r) {
