@@ -38,8 +38,8 @@ make_EHelper(shli){
 }
 
 #define shamt(x) (x & 0x1f)
-#define TYPE1 if(id_src2->imm & (1 << 10))
-#define TYPE2 if(!(id_src2->imm & (1 << 10)))
+#define TYPE1 if(decinfo.isa.instr.funct7 & (1 << 5))
+#define TYPE2 if(!(decinfo.isa.instr.funct7 & (1 << 5)))
 
 make_EHelper(shri){
   TYPE1 {
@@ -52,9 +52,24 @@ make_EHelper(shri){
     print_asm_template2(srli);
   }
 }
+#define R_arg &reg_l(id_dest->reg),&id_src->val, &id_src2->val
 
 make_EHelper(add){
-  
+  TYPE1 {
+    rtl_add(R_arg);
+  }
+  TYPE2 {
+    rtl_sub(R_arg);
+  }
+    
+}
+
+make_EHelper(sll){
+  rtl_shl(R_arg);
+}
+
+make_EHelper(slt){
+  rtl_shl(R_arg);
 }
 
 
