@@ -21,6 +21,7 @@ int main() {
 	int i;
 	for(i = 0; i < 15; i ++) {
 		nemu_assert(i == 0);
+		nemu_assert(1 + 1 == 0);
 		nemu_assert(switch_case(i - 1) == ans[i]);
 	}
 
