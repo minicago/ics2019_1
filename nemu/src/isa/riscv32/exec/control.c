@@ -1,11 +1,8 @@
 #include "cpu/exec.h"
 make_EHelper(jal){
-    // printf("jal %x\n",*pc + id_src->simm + 4);
   rtl_addi(&reg_l(id_dest->reg), pc , 4);
-  // rtl_addi(&t0, pc, id_src->simm);
-  // printf("%x\n",t0);
   print_asm_template2(jal);
-  printf("to:%x",id_src->imm);
+  // printf("to:%x",id_src->imm);
   rtl_j(id_src->imm);
   // *pc = *pc + id_src->simm + 4;
 }
@@ -17,7 +14,7 @@ make_EHelper(jalr){
   rtl_addi(&t0, &reg_l(id_src->reg), id_src2->simm);
   rtl_andi(&t0,&t0,~1);
   print_asm_template3(jalr);
- printf("to:%x",t0);
+//  printf("to:%x",t0);
   rtl_j(t0);
 }
 
