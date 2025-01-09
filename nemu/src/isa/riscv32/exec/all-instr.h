@@ -19,5 +19,14 @@ make_EHelper(slli);
 make_EHelper(shli);
 make_EHelper(shri);
 
+make_EHelper(add);
+make_EHelper(shl);
+make_EHelper(slt);
+make_EHelper(sltu);
+make_EHelper(xor);
+make_EHelper(shr);
+make_EHelper(or);
+make_EHelper(and);
+
 make_EHelper(jal);
 make_EHelper(jalr);
