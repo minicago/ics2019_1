@@ -22,7 +22,6 @@ int main() {
   init_ramdisk();
 
   init_device();
-Log("ok");
 #ifdef HAS_CTE
   
   init_irq();
