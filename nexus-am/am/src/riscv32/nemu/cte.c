@@ -8,9 +8,7 @@ _Context* __am_irq_handle(_Context *c) {
   _Context *next = c;
   if (user_handler) {
     _Event ev = {0};
-    for(int i = 0; i < 35 ; i ++){
-      printf("%x %x\n",i, *(((uint32_t*) c)+i));
-    }
+    printf("%x\n",c->cause);
     switch (c->cause) {
       case -1 :
         ev.event = _EVENT_SYSCALL;
