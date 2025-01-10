@@ -25,7 +25,8 @@ make_EHelper(auipc) {
 make_ISAEHelper(addi)
 make_ISAEHelper(slti)
 make_EHelper(sltiu){ 
-  rtl_sltui (&reg_l(id_dest->reg), &id_src->val, ((1<<12) - 1) & id_src2->imm);
+  Log("sltiu %x", id_src2->imm);
+  rtl_sltui (&reg_l(id_dest->reg), &id_src->val, id_src2->imm);
   print_asm_template3(sltiu); 
 }
 make_IUAEHelper(xori)
