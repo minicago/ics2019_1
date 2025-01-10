@@ -54,7 +54,7 @@ make_EHelper(ori){
   print_asm_template3(ori);  
 }
 make_EHelper(andi){
-  Log("%d&%d", id_src->val ,id_src2->val);
+  Log("%x&%x", id_src->val ,id_src2->val);
   SEXT(id_src2, 12);
   rtl_andi(I_args);
   print_asm_template3(andi); 
