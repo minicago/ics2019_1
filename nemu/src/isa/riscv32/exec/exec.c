@@ -32,7 +32,7 @@ static OpcodeEntry compute_r_table [8] = {
 };
 
 static OpcodeEntry mul_table [8] = {
-  EX(mul),EX(mulh), EX(mulhsu), EX(mulhu), EMPTY, EMPTY, EMPTY, EMPTY,  
+  EX(mul),EX(mulh), EX(mulhsu), EX(mulhu), EX(div), EX(divu), EX(rem), EX(remu),  
 };
 
 static make_EHelper(compute_r) {

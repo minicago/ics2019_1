@@ -33,6 +33,10 @@ make_EHelper(mul);
 make_EHelper(mulh);
 make_EHelper(mulhsu);
 make_EHelper(mulhu);
+make_EHelper(div);
+make_EHelper(divu);
+make_EHelper(rem);
+make_EHelper(remu);
 
 make_EHelper(B);
 make_EHelper(jal);
