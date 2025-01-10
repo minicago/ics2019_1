@@ -73,4 +73,11 @@ void display_inv_msg(vaddr_t pc);
 #define print_asm_template3(instr) \
   print_asm(str(instr) "%c %s,%s,%s", suffix_char(id_dest->width), id_src->str, id_src2->str, id_dest->str)
 
+#define SEXT_(x, w) ((x) | (-(int32_t)(1<<((w)-1) & x)) )
+#define SEXT(src, w) \
+  do{ \
+    src->val = SEXT_(src->val, w); \
+    sprintf(src->str, "%d", src->val);\
+  }while(0)
+
 #endif
