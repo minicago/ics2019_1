@@ -128,7 +128,7 @@ make_EHelper(shr){
     rtl_shr(R_arg);
     print_asm_template3(srl);
     break;
-  case 20 :
+  case 0x20 :
     rtl_sar(R_arg);
     print_asm_template3(sra);
     break;
