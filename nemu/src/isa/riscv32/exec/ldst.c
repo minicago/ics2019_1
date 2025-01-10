@@ -14,7 +14,7 @@ make_EHelper(ld) {
 
 make_EHelper(sld) {
   rtl_lm(&s0, &id_src->addr, decinfo.width);
-  s0 |= - ((int32_t)s0 & (1<<decinfo.width));
+  s0 = SEXT_(s0, decinfo.width);
   rtl_sr(id_dest->reg, &s0, 4);
 
   switch (decinfo.width) {
