@@ -28,6 +28,6 @@ void __am_timer_init() {
   printf("ok\n");
   printf("%d\n",inl(RTC_ADDR));
   outl(RTC_ADDR, 0);
-  printf("%x\n",inl(RTC_ADDR));
+  printf("%d\n",inl(RTC_ADDR));
 }
 
