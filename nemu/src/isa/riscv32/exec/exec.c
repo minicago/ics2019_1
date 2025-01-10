@@ -60,7 +60,7 @@ void isa_exec(vaddr_t *pc) {
   
    
   idex(pc, &opcode_table[decinfo.isa.instr.opcode6_2]);
-  printf("a0=%x a1=%x\n", reg_l(10), reg_l(11));
+  printf("a0=%x a1=%x a5=%x\n", reg_l(10), reg_l(11), reg_l(15));
   
 
   
