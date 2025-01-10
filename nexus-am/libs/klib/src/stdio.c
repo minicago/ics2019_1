@@ -72,7 +72,7 @@ int printf(const char *fmt, ...) {
   va_start(arg, fmt);
 
   int done = vsprintf(buffer, fmt, arg);
-  for(int i=0; i<=5; i++){
+  for(int i=0; buffer[i]!=0; i++){
     _putc(buffer[i]);
   }
   
