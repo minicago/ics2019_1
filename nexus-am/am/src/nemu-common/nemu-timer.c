@@ -2,12 +2,14 @@
 #include <amdev.h>
 #include <nemu.h>
 
+uint32_t time0 = 0;
+
 size_t __am_timer_read(uintptr_t reg, void *buf, size_t size) {
   switch (reg) {
     case _DEVREG_TIMER_UPTIME: {
       _DEV_TIMER_UPTIME_t *uptime = (_DEV_TIMER_UPTIME_t *)buf;
       uptime->hi = 0;
-      uptime->lo = inl(RTC_ADDR);
+      uptime->lo = inl(RTC_ADDR) - time0;
       return sizeof(_DEV_TIMER_UPTIME_t);
     }
     case _DEVREG_TIMER_DATE: {
@@ -25,9 +27,6 @@ size_t __am_timer_read(uintptr_t reg, void *buf, size_t size) {
 }
 
 void __am_timer_init() {
-  printf("ok\n");
-  printf("%d\n",inl(RTC_ADDR));
-  outl(RTC_ADDR, 0);
-  printf("%d\n",inl(RTC_ADDR));
+  time0 = inl(RTC_ADDR);
 }
 
