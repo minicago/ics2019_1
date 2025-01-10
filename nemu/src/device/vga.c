@@ -31,11 +31,11 @@ static inline void update_screen() {
 static void vga_io_handler(uint32_t offset, int len, bool is_write) {
   // TODO: call `update_screen()` when writing to the sync register
   // TODO();
-  uint32_t sync = vgactl_port_base[1];
-  if (sync) {
-    update_screen();
-    vgactl_port_base[1] = 0;
-  }
+  // uint32_t sync = vgactl_port_base[1];
+  // if (sync) {
+  //   update_screen();
+  //   vgactl_port_base[1] = 0;
+  // }
 }
 
 void init_vga() {
