@@ -34,9 +34,9 @@ make_EHelper(auipc) {
 
 
 make_EHelper(addi){
-  Log("+%d",id_src2->val);
+  Log("%d+%d", id_src->val ,id_src2->val);
   SEXT(id_src2, 12);
-  Log("+%d",id_src2->val);
+  Log("%d+%d", id_src->val ,id_src2->val);
   rtl_addi(I_args);
   print_asm_template3(addi);
 }
