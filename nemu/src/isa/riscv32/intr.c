@@ -6,7 +6,7 @@ void raise_intr(uint32_t NO, vaddr_t epc) {
    */
     cpu.sepc = epc;
     cpu.scause = NO;
-
+    Log("%d", NO);
     
     rtl_jr(&cpu.stvec);  
 }
