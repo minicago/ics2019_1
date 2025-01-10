@@ -26,6 +26,7 @@ size_t __am_timer_read(uintptr_t reg, void *buf, size_t size) {
 
 void __am_timer_init() {
   printf("ok\n");
+  printf("%x\n",inl(RTC_ADDR));
   outl(RTC_ADDR, 0);
   printf("%x\n",inl(RTC_ADDR));
 }
