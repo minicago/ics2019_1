@@ -43,7 +43,7 @@ static make_EHelper(compute_r) {
 }
 
 static OpcodeEntry csr_table [8] = {
-  EMPTY, IDEX(CSRR, CSRRW), IDEX(CSRR, CSRRS), IDEX(CSRR, CSRRC), EMPTY, IDEX(CSRI, CSRRWI), IDEX(CSRI, CSRRSI), IDEX(CSRI, CSRRCI),
+  EMPTY, IDEX(CSRR, CSRRW), IDEX(CSRR, CSRRS), IDEX(CSRR, CSRRC), EMPTY, IDEX(CSRI, CSRRW), IDEX(CSRI, CSRRS), IDEX(CSRI, CSRRC),
 };
 
 static make_EHelper(CSR){
