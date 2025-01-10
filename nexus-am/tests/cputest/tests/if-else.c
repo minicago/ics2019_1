@@ -11,11 +11,11 @@ int if_else(int n) {
 	return cost;
 }
 
-int test_data[] = {-1, 50, 49, 50, 51, 99, 100, 101, 299, 300, 301, 499, 500, 501};
+int test_data[] = {-1, 0, 0, 50, 51, 99, 100, 101, 299, 300, 301, 499, 500, 501};
 int ans[] = {0, 0, 0, 0, 50, 50, 50, 75, 75, 75, 100, 100, 100, 150};
 
 // #define NR_DATA (sizeof(test_data) / sizeof(test_data[0])) 
-#define NR_DATA 2
+#define NR_DATA 3
 
 int main() {
 	int i, ans_idx = 0;
