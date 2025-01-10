@@ -24,7 +24,6 @@ static OpcodeEntry compute_i_table [8] = {
 };
 
 static make_EHelper(compute_i) {
-  decinfo.width = compute_i_table[decinfo.isa.instr.funct3].width;
   idex(pc, &compute_i_table[decinfo.isa.instr.funct3]);  
 }
 
@@ -32,8 +31,14 @@ static OpcodeEntry compute_r_table [8] = {
   EX(add),EX(shl), EX(slt), EX(sltu), EX(xor),EX(shr), EX(or), EX(and),  
 };
 
+static OpcodeEntry mul_table [8] = {
+  EX(mul),EX(mulh), EX(mulhsu), EX(mulhu), EMPTY, EMPTY, EMPTY, EMPTY,  
+};
+
 static make_EHelper(compute_r) {
-  decinfo.width = compute_r_table[decinfo.isa.instr.funct3].width;
+  if (decinfo.isa.instr.funct7 == 1){
+    idex(pc, &mul_table[decinfo.isa.instr.funct3]);
+  }
   idex(pc, &compute_r_table[decinfo.isa.instr.funct3]);  
 }
 

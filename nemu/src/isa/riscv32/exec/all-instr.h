@@ -29,6 +29,11 @@ make_EHelper(shr);
 make_EHelper(or);
 make_EHelper(and);
 
+make_EHelper(mul);
+make_EHelper(mulh);
+make_EHelper(mulhsu);
+make_EHelper(mulhu);
+
 make_EHelper(B);
 make_EHelper(jal);
 make_EHelper(jalr);

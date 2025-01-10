@@ -80,4 +80,7 @@ void display_inv_msg(vaddr_t pc);
     sprintf(src->str, "%d", src->val);\
   }while(0)
 
+#define I_args &reg_l(id_dest->reg), &id_src->val, id_src2->val
+#define R_arg &reg_l(id_dest->reg),&id_src->val, &id_src2->val
+
 #endif
