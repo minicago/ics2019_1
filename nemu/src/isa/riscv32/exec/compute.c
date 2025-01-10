@@ -22,7 +22,7 @@ make_EHelper(auipc) {
 //     print_asm_template3(name); \
 //   }
 
-#define SEXT_(x, w) ((x) | ((1<<(w)) - 1) )
+#define SEXT_(x, w) ((x) | (-(1<<((w)-1) | x)) )
 #define SEXT(src, w) \
   do{ \
     src->val = SEXT_(src->val, w); \
