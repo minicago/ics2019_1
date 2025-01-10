@@ -1,6 +1,7 @@
 #include "cpu/exec.h"
 
 make_EHelper(mul){
+    LOG("mul %x %x", id_src->val, id_src2->val);
     rtl_mul_lo(R_arg);
     print_asm_template3(mul);
 }
