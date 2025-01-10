@@ -22,12 +22,6 @@ make_EHelper(auipc) {
 //     print_asm_template3(name); \
 //   }
 
-#define SEXT_(x, w) ((x) | (-(int32_t)(1<<((w)-1) & x)) )
-#define SEXT(src, w) \
-  do{ \
-    src->val = SEXT_(src->val, w); \
-    sprintf(src->str, "%d", src->val);\
-  }while(0)
 
 #define I_args &reg_l(id_dest->reg), &id_src->val, id_src2->val
 
@@ -65,6 +59,7 @@ make_EHelper(andi){
   print_asm_template3(andi); 
 }
 make_EHelper(shli){
+  Log("%d<<%d", id_src->val ,id_src2->val);
   rtl_shli (&reg_l(id_dest->reg), &id_src->val, id_src2->imm);
   print_asm_template3(slli);
 }
@@ -75,6 +70,7 @@ make_EHelper(shli){
 
 make_EHelper(shri){
   TYPE1 {
+    Log("%d>a>%d", id_src->val ,id_src2->val);
     rtl_sari(&reg_l(id_dest->reg), &id_src->val, id_src2->imm);
     print_asm_template3(srai);
   } 
