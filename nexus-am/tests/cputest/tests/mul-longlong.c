@@ -1,5 +1,5 @@
 #include "trap.h"
-
+__attribute__ ((__noinline__))
 long long mul(long long a,long long b) {
 	long long ans = a*b;
 	return ans;
