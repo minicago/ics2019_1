@@ -38,6 +38,7 @@ _Context *_kcontext(_Area stack, void (*entry)(void *), void *arg) {
 
 void _yield() {
   asm volatile("li a7, -1; ecall");
+  
 }
 
 int _intr_read() {

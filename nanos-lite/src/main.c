@@ -22,7 +22,7 @@ int main() {
   init_ramdisk();
 
   init_device();
-  
+
 #ifdef HAS_CTE
   init_irq();
 #endif
@@ -34,6 +34,7 @@ int main() {
   Log("Finish initialization");
 
 #ifdef HAS_CTE
+Log("yeild");
   _yield();
 #endif
 
