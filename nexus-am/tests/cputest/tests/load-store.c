@@ -25,7 +25,7 @@ unsigned  lwlr_ans[] = {
 int main() {
 	unsigned i;
 
-	for(i = 0; i < ARR_SIZE(mem) - 5; i ++) {
+	for(i = 0; i < ARR_SIZE(mem) - 4; i ++) {
 		nemu_assert((short)mem[i] == lh_ans[i]);
 	}
 
