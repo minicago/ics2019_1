@@ -66,19 +66,19 @@ make_EHelper(shli){
 }
 
 
-#define TYPE1 if(!(decinfo.isa.instr.funct7 & (1 << 5)))
-#define TYPE2 if((decinfo.isa.instr.funct7 & (1 << 5)))
 
 make_EHelper(shri){
-  TYPE2 {
-    // Log("%d>a>%d", id_src->val ,id_src2->val);
-    rtl_sari(&reg_l(id_dest->reg), &id_src->val, id_src2->imm);
-    print_asm_template3(srai);
-  } 
-
-  TYPE1 {
+  switch (decinfo.isa.instr.funct7 )
+  {
+  case 0:
     rtl_shri(&reg_l(id_dest->reg), &id_src->val, id_src2->imm);
-    print_asm_template3(srli);
+    print_asm_template3(srli); 
+    break;
+  
+  case 0x20:
+    rtl_sari(&reg_l(id_dest->reg), &id_src->val, id_src2->imm);
+    print_asm_template3(srai);    
+    break;
   }
 }
 
@@ -86,13 +86,17 @@ make_EHelper(shri){
 
 make_EHelper(add){
   // printf("%d %d %d \n",decinfo.isa.instr.funct7, id_src->val, id_src2->val);
-  TYPE1 {
+  switch (decinfo.isa.instr.funct7 )
+  {
+  case 0:
     rtl_add(R_arg);
     print_asm_template3(add);
-  }
-  TYPE2 {
+    break;
+
+  case 0x20:
     rtl_sub(R_arg);
     print_asm_template3(sub);
+    break;
   }
 }
 
@@ -118,16 +122,19 @@ make_EHelper(xor){
   print_asm_template3(xor);
 }
 
-make_EHelper(shr){
-  TYPE2 {
-    rtl_sar(R_arg);
-    print_asm_template3(sra);
-  } 
-
-  TYPE1 {
+make_EHelper(shr){  
+  switch (decinfo.isa.instr.funct7 ){
+  case 0: 
     rtl_shr(R_arg);
     print_asm_template3(srl);
+    break;
+  case 20 :
+    rtl_sar(R_arg);
+    print_asm_template3(sra);
+    break;
   }
+
+
 }
 
 make_EHelper(or){
