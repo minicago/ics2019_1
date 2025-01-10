@@ -16,6 +16,7 @@ make_EHelper(mulhsu){
 }
 make_EHelper(mulhu){
     rtl_imul_hi(R_arg);
+    Log("mul %x %x = %x", id_src->val, id_src2->val, reg_l(id_dest->reg));
     print_asm_template3(mulhu);     
 }
 
