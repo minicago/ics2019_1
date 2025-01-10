@@ -27,8 +27,20 @@ int vsnprintf(char *out, size_t n, const char *fmt, va_list ap) {
                   for(int i = buf_len - 1; i >= 0; i--)
                     out[len++] = buf[i];
                 break;
+                case 'x':
+                  uval = va_arg(ap, uint32_t);    
+                  if(uval == 0) out[len++] = '0';
+                  for(buf_len = 0; uval; uval /= 16, buf_len++)
+                    buf[buf_len] = NUM_CHAR[uval % 16];    
+                  for(int i = buf_len - 1; i >= 0; i--)
+                    out[len++] = buf[i];
+                break;
                 case 'u':
                   uval = va_arg(ap, uint32_t);
+                  for(buf_len = 0; uval; uval /= 10, buf_len++)
+                    buf[buf_len] = NUM_CHAR[uval % 10];    
+                  for(int i = buf_len - 1; i >= 0; i--)
+                    out[len++] = buf[i];
                 break;
                 case 'c':
                   c = (char)va_arg(ap, int);
