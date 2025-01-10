@@ -1,12 +1,13 @@
 #include "cpu/exec.h"
 
 make_EHelper(mul){
-    Log("mul %x %x", id_src->val, id_src2->val);
+    
     rtl_mul_lo(R_arg);
+    Log("mul %x %x = %x", id_src->val, id_src2->val, reg_l(id_dest->reg));
     print_asm_template3(mul);
 }
 make_EHelper(mulh){
-    rtl_imul_hi(R_arg);
+    rtl_mul_hi(R_arg);
     print_asm_template3(mulh);    
 }
 make_EHelper(mulhsu){
@@ -14,7 +15,7 @@ make_EHelper(mulhsu){
     print_asm_template3(mulhsu);     
 }
 make_EHelper(mulhu){
-    rtl_mul_hi(R_arg);
+    rtl_imul_hi(R_arg);
     print_asm_template3(mulhu);     
 }
 
