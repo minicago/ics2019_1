@@ -5,7 +5,7 @@
 #include <amdev.h>
 #include <klib.h>
 
-#define HAS_CTE
+#define HAS_CTE 1
 
 typedef uint8_t byte;
 typedef uint16_t word;
