@@ -28,9 +28,9 @@ make_EHelper(auipc) {
 
 
 make_EHelper(addi){
-  Log("%d+%d", id_src->val ,id_src2->val);
+  // Log("%d+%d", id_src->val ,id_src2->val);
   SEXT(id_src2, 12);
-  Log("%d+%d", id_src->val ,id_src2->val);
+  // Log("%d+%d", id_src->val ,id_src2->val);
   rtl_addi(I_args);
   print_asm_template3(addi);
 }
@@ -59,7 +59,7 @@ make_EHelper(andi){
   print_asm_template3(andi); 
 }
 make_EHelper(shli){
-  Log("%d<<%d", id_src->val ,id_src2->val);
+  // Log("%d<<%d", id_src->val ,id_src2->val);
   rtl_shli (&reg_l(id_dest->reg), &id_src->val, id_src2->imm);
   print_asm_template3(slli);
 }
