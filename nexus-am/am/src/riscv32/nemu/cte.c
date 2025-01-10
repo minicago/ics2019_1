@@ -8,6 +8,8 @@ _Context* __am_irq_handle(_Context *c) {
   if (user_handler) {
     _Event ev = {0};
     switch (c->cause) {
+      case -1 :
+        ev.event = _EVENT_SYSCALL;
       default: ev.event = _EVENT_ERROR; break;
     }
 
