@@ -72,8 +72,8 @@ int printf(const char *fmt, ...) {
   va_start(arg, fmt);
 
   int done = vsprintf(buffer, fmt, arg);
-  // putstr(buffer);
-
+  _putc(buffer[0]);
+  
   va_end(arg);
   return done;
 }
