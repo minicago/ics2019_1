@@ -119,12 +119,12 @@ make_EHelper(xor){
 }
 
 make_EHelper(shr){
-  TYPE1 {
+  TYPE2 {
     rtl_sar(R_arg);
     print_asm_template3(sra);
   } 
 
-  TYPE2 {
+  TYPE1 {
     rtl_shr(R_arg);
     print_asm_template3(srl);
   }
