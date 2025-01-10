@@ -70,7 +70,7 @@ make_EHelper(shli){
 
 make_EHelper(shri){
   TYPE2 {
-    Log("%d>a>%d", id_src->val ,id_src2->val);
+    // Log("%d>a>%d", id_src->val ,id_src2->val);
     rtl_sari(&reg_l(id_dest->reg), &id_src->val, id_src2->imm);
     print_asm_template3(srai);
   } 
