@@ -57,7 +57,7 @@ void isa_exec(vaddr_t *pc) {
 
   assert(decinfo.isa.instr.opcode1_0 == 0x3);
   // printf("id: %x\n",decinfo.isa.instr.opcode6_2);
-  // printf("a0=%x\n", reg_l(10), reg_l(10));
+  printf("a0=%x a1=%x\n", reg_l(10), reg_l(11));
    
   idex(pc, &opcode_table[decinfo.isa.instr.opcode6_2]);
   
