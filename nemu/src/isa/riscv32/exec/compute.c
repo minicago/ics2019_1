@@ -22,11 +22,6 @@ make_EHelper(auipc) {
 //     print_asm_template3(name); \
 //   }
 
-
-#define I_args &reg_l(id_dest->reg), &id_src->val, id_src2->val
-
-
-
 make_EHelper(addi){
   // Log("%d+%d", id_src->val ,id_src2->val);
   SEXT(id_src2, 12);
@@ -82,18 +77,18 @@ make_EHelper(shri){
   }
 }
 
-#define R_arg &reg_l(id_dest->reg),&id_src->val, &id_src2->val
-
 make_EHelper(add){
   // printf("%d %d %d \n",decinfo.isa.instr.funct7, id_src->val, id_src2->val);
   switch (decinfo.isa.instr.funct7 )
   {
   case 0:
+    Log("%d+%d \n", id_src->val, id_src2->val);
     rtl_add(R_arg);
     print_asm_template3(add);
     break;
 
   case 0x20:
+    Log("%d+%d \n", id_src->val, id_src2->val);
     rtl_sub(R_arg);
     print_asm_template3(sub);
     break;
