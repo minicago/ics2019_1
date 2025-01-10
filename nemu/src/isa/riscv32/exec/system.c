@@ -1,9 +1,10 @@
 #include "cpu/exec.h"
 
 make_EHelper(ecall){
-    cpu.sepc = pc;
-    cpu.scause = 0x8;
-    rtl_jr(&cpu.stvec);
+    raise_intr(reg_l(17), *pc);
+    // cpu.sepc = pc;
+    // cpu.scause = 0x8;
+    // rtl_jr(&cpu.stvec);
 }
 
 make_EHelper(CSRRW){
