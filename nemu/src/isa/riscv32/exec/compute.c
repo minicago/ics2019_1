@@ -82,7 +82,7 @@ make_EHelper(add){
   switch (decinfo.isa.instr.funct7 )
   {
   case 0:
-    Log("%x+%x \n", id_src->val, id_src2->val);
+    // Log("%x+%x \n", id_src->val, id_src2->val);
     rtl_add(R_arg);
     print_asm_template3(add);
     break;
