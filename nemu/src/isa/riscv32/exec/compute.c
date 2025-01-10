@@ -103,7 +103,8 @@ make_EHelper(shl){
 
 make_EHelper(slt){
   rtl_slt(R_arg);
-  Log("%d>%d", id_src->val ,id_src2->val);
+  Log("%d<%d %d", id_src->val ,id_src2->val, c_slt(id_src->val, id_src2->val));
+  
   print_asm_template3(slt);
 }
 
