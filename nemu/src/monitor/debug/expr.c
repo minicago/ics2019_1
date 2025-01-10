@@ -38,7 +38,7 @@ static struct rule {
   {"!=", TK_NEQ},
   {"\\(",'('},
   {"\\)",')'},
-  {"0[xX][0-9]+",TK_HEX},
+  {"0[xX][0-9a-fA-F]+",TK_HEX},
   {"\\$[0-9a-z]+", TK_REG},
   {"[0-9]+",TK_DEC},
   
