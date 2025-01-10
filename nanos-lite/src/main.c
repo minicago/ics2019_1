@@ -23,7 +23,7 @@ int main() {
 
   init_device();
 #ifdef HAS_CTE
-  
+  Log("ok");
   init_irq();
 #endif
 
