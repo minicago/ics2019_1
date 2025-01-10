@@ -22,17 +22,17 @@ unsigned srav_ans[] = {
 int main() {
 	unsigned i;
 
-	// for(i = 0; i < ARR_SIZE(test); i ++) {
-	// 	nemu_assert((test[i] >> 7) == srl_ans[i]);
-	// }
+	for(i = 0; i < ARR_SIZE(test); i ++) {
+		nemu_assert((test[i] >> 7) == srl_ans[i]);
+	}
 
 	for(i = 0; i < ARR_SIZE(test); i ++) {
 		nemu_assert((unsigned)((int)test[i] >> (i + 4)) == srav_ans[i]);
 	}
 
-	// for(i = 0; i < ARR_SIZE(test); i ++) {
-	// 	nemu_assert((test[i] >> (i + 4)) == srlv_ans[i]);
-	// }
+	for(i = 0; i < ARR_SIZE(test); i ++) {
+		nemu_assert((test[i] >> (i + 4)) == srlv_ans[i]);
+	}
 
 	return 0;
 }
