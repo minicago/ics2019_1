@@ -34,6 +34,7 @@ static void vga_io_handler(uint32_t offset, int len, bool is_write) {
   // TODO();
   
   if (sync_port_base[0]) {
+    printf("ok");
     update_screen();
     sync_port_base[0] = 0;
   }
@@ -51,8 +52,8 @@ void init_vga() {
 
   screensize_port_base = (void *)new_space(4);
   screensize_port_base[0] = ((SCREEN_W) << 16) | (SCREEN_H);
-  add_pio_map("screen", SCREEN_PORT, (void *)screensize_port_base, 4, vga_io_handler);
-  add_mmio_map("screen", SCREEN_MMIO, (void *)screensize_port_base, 4, vga_io_handler);
+  add_pio_map("screen", SCREEN_PORT, (void *)screensize_port_base, 4, NULL);
+  add_mmio_map("screen", SCREEN_MMIO, (void *)screensize_port_base, 4, NULL);
   sync_port_base = (void*) new_space(4);
   sync_port_base[0] = 0;
   add_pio_map("sync", SYNC_PORT, (void *)sync_port_base, 4, vga_io_handler);
