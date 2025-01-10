@@ -88,7 +88,7 @@ make_EHelper(add){
     break;
 
   case 0x20:
-    Log("%x+%x \n", id_src->val, id_src2->val);
+    // Log("%x+%x \n", id_src->val, id_src2->val);
     rtl_sub(R_arg);
     print_asm_template3(sub);
     break;
