@@ -72,13 +72,11 @@ void video_test() {
   unsigned long last = 0;
   unsigned long fps_last = 0;
   int fps = 0;
-  printf("video!%d %d\n", screen_width(), screen_height());
 
   while (1) {
     unsigned long upt = uptime();
     if (upt - last > 1000 / FPS) {
       update();
-      printf("redraw!\n");
       redraw();
       last = upt;
       fps ++;

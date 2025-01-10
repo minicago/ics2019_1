@@ -33,7 +33,7 @@ static void vga_io_handler(uint32_t offset, int len, bool is_write) {
   // TODO: call `update_screen()` when writing to the sync register
   // TODO();
   if (!sync_port_base[0]) {
-    printf("ok");
+    // printf("ok");
     update_screen();
     sync_port_base[0] = 1;
   }
