@@ -11,7 +11,9 @@ make_EHelper(CSRRW){
 }
 make_EHelper(CSRRS){
     Log("%x",*CSR(id_src2->val));
+    
     rtl_li (id_dest , *CSR(id_src2->val));
+    Log("%x",reg_l(id_dest->reg));
     *CSR(id_src2->val) |= id_src->val;
 }
 make_EHelper(CSRRC){
