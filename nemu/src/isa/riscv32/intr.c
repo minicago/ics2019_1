@@ -5,7 +5,8 @@ void raise_intr(uint32_t NO, vaddr_t epc) {
    * That is, use ``NO'' to index the IDT.
    */
     cpu.sepc = epc;
-    cpu.scause = 0x8;
+    cpu.scause = NO;
+    
     rtl_jr(&cpu.stvec);  
 }
 
