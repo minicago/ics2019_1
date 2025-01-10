@@ -42,6 +42,7 @@ make_EHelper(B);
 make_EHelper(jal);
 make_EHelper(jalr);
 
+make_EHelper(ecall);
 make_EHelper(CSRRW);
 make_EHelper(CSRRS);
 make_EHelper(CSRRC);
