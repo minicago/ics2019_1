@@ -39,7 +39,7 @@ static make_EHelper(compute_r) {
   if (decinfo.isa.instr.funct7 == 1){
     idex(pc, &mul_table[decinfo.isa.instr.funct3]);
   }
-  idex(pc, &compute_r_table[decinfo.isa.instr.funct3]);  
+  else idex(pc, &compute_r_table[decinfo.isa.instr.funct3]);  
 }
 
 static OpcodeEntry opcode_table [32] = {
@@ -58,7 +58,7 @@ void isa_exec(vaddr_t *pc) {
   assert(decinfo.isa.instr.opcode1_0 == 0x3);
   // printf("id: %x\n",decinfo.isa.instr.opcode6_2);
   
-   
+
   idex(pc, &opcode_table[decinfo.isa.instr.opcode6_2]);
   printf("a0=%x a1=%x a5=%x\n", reg_l(10), reg_l(11), reg_l(15));
   
