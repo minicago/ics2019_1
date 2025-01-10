@@ -52,15 +52,8 @@ void isa_exec(vaddr_t *pc) {
 
   assert(decinfo.isa.instr.opcode1_0 == 0x3);
   // printf("id: %x\n",decinfo.isa.instr.opcode6_2);
-  if(*pc==0x80100028) {
-    printf("if-else %x %x\n", reg_l(10), reg_l(10));
-  }  
-  if(*pc==0x80100054) {
-    printf("if-else %x %x\n", reg_l(10), reg_l(10));
-  }    
-  if(*pc==0x80100058) {
-    printf("if-else %x %x\n", reg_l(10), reg_l(10));
-  }      
+  printf("a0=%x\n", reg_l(10), reg_l(10));
+   
   idex(pc, &opcode_table[decinfo.isa.instr.opcode6_2]);
   
 
