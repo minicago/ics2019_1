@@ -1,5 +1,5 @@
 #include "trap.h"
-
+__attribute__ ((__noinline__))
 int if_else(int n) {
 	int cost;
 	if(n > 500) cost = 150;
