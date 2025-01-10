@@ -18,6 +18,17 @@ size_t __am_video_write(uintptr_t reg, void *buf, size_t size) {
   switch (reg) {
     case _DEVREG_VIDEO_FBCTL: {
       _DEV_VIDEO_FBCTL_t *ctl = (_DEV_VIDEO_FBCTL_t *)buf;
+        int x = ctl->x, y = ctl->y, w = ctl->w, h = ctl->h;
+        if (!ctl->sync && (w == 0 || h == 0))
+          return;
+        uint32_t *pixels = ctl->pixels;
+        uint32_t *fb = (uint32_t *)(uintptr_t)FB_ADDR;
+        uint32_t screen_w = inl(SCREEN_ADDR) >> 16;
+        for (int i = y; i < y+h; i++) {
+          for (int j = x; j < x+w; j++) {
+            fb[screen_w*i+j] = pixels[w*(i-y)+(j-x)]; 
+          }
+        }
 
       if (ctl->sync) {
         outl(SYNC_ADDR, 0);
