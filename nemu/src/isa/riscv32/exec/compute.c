@@ -10,28 +10,59 @@ make_EHelper(auipc) {
   print_asm_template2(auipc);
 }
 
-#define make_ISAEHelper(name) \
-  make_EHelper(name){ \
-    concat(rtl_, name)(&reg_l(id_dest->reg), &id_src->val, id_src2->simm);\
-    print_asm_template3(name); \
-  }
+// #define make_ISAEHelper(name) \
+//   make_EHelper(name){ \
+//     concat(rtl_, name)(&reg_l(id_dest->reg), &id_src->val, id_src2->simm);\
+//     print_asm_template3(name); \
+//   }
 
-#define make_IUAEHelper(name) \
-  make_EHelper(name){ \
-    concat(rtl_, name)(&reg_l(id_dest->reg), &id_src->val, id_src2->imm);\
-    print_asm_template3(name); \
-  }
+// #define make_IUAEHelper(name) \
+//   make_EHelper(name){ \
+//     concat(rtl_, name)(&reg_l(id_dest->reg), &id_src->val, id_src2->imm);\
+//     print_asm_template3(name); \
+//   }
 
-make_ISAEHelper(addi)
-make_ISAEHelper(slti)
+#define SEXT_(x, w) ((x) | ((1<<(w)) - 1) )
+#define SEXT(src, w) \
+  do{ \
+    src->val = SEXT_(src->val, w); \
+    sprintf(src->str, "%d", src->val);\
+  }while(0)
+
+#define I_args &reg_l(id_dest->reg), &id_src->val, id_src2->val
+
+
+
+make_EHelper(addi){
+  SEXT(id_src2, 12);
+  rtl_addi(I_args);
+  print_asm_template3(addi);
+}
+make_EHelper(slti){
+  SEXT(id_src2, 12);
+  rtl_slti(I_args);
+  print_asm_template3(slti);
+}
 make_EHelper(sltiu){ 
-  Log("sltiu %x", id_src2->imm);
-  rtl_sltui (&reg_l(id_dest->reg), &id_src->val, id_src2->imm);
+  // Log("sltiu %x", id_src2->imm);
+  rtl_sltui (I_args);
   print_asm_template3(sltiu); 
 }
-make_IUAEHelper(xori)
-make_IUAEHelper(ori)
-make_IUAEHelper(andi)
+make_EHelper(xori){
+  SEXT(id_src2, 12);
+  rtl_xori(I_args);
+  print_asm_template3(xori);
+}
+make_EHelper(ori){
+  SEXT(id_src2, 12);
+  rtl_ori(I_args);
+  print_asm_template3(ori);  
+}
+make_EHelper(andi){
+  SEXT(id_src2, 12);
+  rtl_andi(I_args);
+  print_asm_template3(andi); 
+}
 make_EHelper(shli){
   rtl_shli (&reg_l(id_dest->reg), &id_src->val, id_src2->imm);
   print_asm_template3(slli);
