@@ -36,6 +36,7 @@ make_EHelper(addi){
 }
 make_EHelper(slti){
   SEXT(id_src2, 12);
+  Log("%d>%d", id_src->val ,id_src2->val);
   rtl_slti(I_args);
   print_asm_template3(slti);
 }
