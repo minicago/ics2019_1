@@ -91,3 +91,16 @@ make_DHelper(B){
   | (decinfo.isa.instr.imm4_1 << 1), 
   true);
 }
+
+make_DHelper(CSR){
+  decode_op_r(id_dest, decinfo.isa.instr.rd, false);
+  decode_op_i(id_src2, decinfo.isa.instr.csr, true); 
+}
+
+make_DHelper(CSRR){
+  decode_op_r(id_src, decinfo.isa.instr.rs1, true);
+}
+
+make_DHelper(CSRI){
+  decode_op_i(id_src, decinfo.isa.instr.rs1, true);
+}

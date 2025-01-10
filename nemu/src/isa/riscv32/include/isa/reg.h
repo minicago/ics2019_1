@@ -10,9 +10,17 @@ typedef struct {
     rtlreg_t _32;
   } gpr[32];
 
+  rtlreg_t stvec, sepc, sstatus, scause;
   vaddr_t pc;
 
 } CPU_state;
+
+typedef struct{
+  rtlreg_t* value;
+  uint32_t index;
+} CSR_info;
+
+rtlreg_t *CSR(uint32_t CSR_index);
 
 static inline int check_reg_index(int index) {
   assert(index >= 0 && index < 32);

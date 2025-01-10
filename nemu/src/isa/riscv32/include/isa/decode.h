@@ -60,5 +60,8 @@ make_DHelper(R);
 make_DHelper(J);
 make_DHelper(shamt);
 make_DHelper(B);
+make_DHelper(CSR);
+make_DHelper(CSRR);
+make_DHelper(CSRI);
 
 #endif

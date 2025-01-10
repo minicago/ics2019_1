@@ -41,3 +41,11 @@ make_EHelper(remu);
 make_EHelper(B);
 make_EHelper(jal);
 make_EHelper(jalr);
+
+make_EHelper(CSRRW);
+make_EHelper(CSRRS);
+make_EHelper(CSRRC);
+
+make_EHelper(CSRRWI);
+make_EHelper(CSRRSI);
+make_EHelper(CSRRCI);
