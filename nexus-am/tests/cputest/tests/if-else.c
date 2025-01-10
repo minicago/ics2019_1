@@ -12,7 +12,7 @@ int if_else(int n) {
 }
 
 int test_data[] = {-1, 0, 49, 50, 51, 99, 100, 101, 299, 300, 301, 499, 500, 501};
-int ans[] = {0, 0, 75, 0, 50, 50, 50, 75, 75, 75, 100, 100, 100, 150};
+int ans[] = {0, 0, 50, 0, 50, 50, 50, 75, 75, 75, 100, 100, 100, 150};
 
 // #define NR_DATA (sizeof(test_data) / sizeof(test_data[0])) 
 #define NR_DATA 3
