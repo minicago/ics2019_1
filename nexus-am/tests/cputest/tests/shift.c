@@ -26,7 +26,7 @@ int main() {
 	// 	nemu_assert((test[i] >> 7) == srl_ans[i]);
 	// }
 
-	for(i = 0; i < ARR_SIZE(test) - 6; i ++) {
+	for(i = 0; i < ARR_SIZE(test) - 5; i ++) {
 		nemu_assert((unsigned)((int)test[i] >> (i + 4)) == srav_ans[i]);
 	}
 
