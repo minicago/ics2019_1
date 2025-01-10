@@ -69,13 +69,13 @@ make_EHelper(shli){
 #define TYPE2 if((decinfo.isa.instr.funct7 & (1 << 5)))
 
 make_EHelper(shri){
-  TYPE1 {
+  TYPE2 {
     Log("%d>a>%d", id_src->val ,id_src2->val);
     rtl_sari(&reg_l(id_dest->reg), &id_src->val, id_src2->imm);
     print_asm_template3(srai);
   } 
 
-  TYPE2 {
+  TYPE1 {
     rtl_shri(&reg_l(id_dest->reg), &id_src->val, id_src2->imm);
     print_asm_template3(srli);
   }
