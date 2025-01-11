@@ -5,6 +5,7 @@ make_EHelper(ecall){
 }
 
 make_EHelper(eret){
+    Log("%x",cpu.sepc);
     rtl_jr(&cpu.sepc);
 }
 
