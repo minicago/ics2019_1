@@ -32,6 +32,7 @@ static _Context* do_event(_Event e, _Context* c) {
       switch (c->gpr[10])
       {
       case SYS_exit:
+        Log("%x",c->gpr[11]);
         _halt(c->gpr[11]);
         break;
       
