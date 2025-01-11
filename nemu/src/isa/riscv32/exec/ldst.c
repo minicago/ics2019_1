@@ -26,7 +26,7 @@ make_EHelper(sld) {
 }
 
 make_EHelper(st) {
-  Log("%d: %x",id_dest->reg, id_dest->val);
+  // Log("%d: %x",id_dest->reg, id_dest->val);
   rtl_sm(&id_src->addr, &id_dest->val, decinfo.width);
 
   switch (decinfo.width) {
