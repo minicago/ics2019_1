@@ -6,9 +6,12 @@ static _Context* (*user_handler)(_Event, _Context*) = NULL;
 
 _Context* __am_irq_handle(_Context *c) {
   _Context *next = c;
+  
   if (user_handler) {
     _Event ev = {0};
-    
+    for(int i=0; i<32; i++){
+      printf("%2d %x",i, c->gpr[i]);
+    }
     switch (c->cause) {
       case -1 :
         ev.event = _EVENT_YIELD;
