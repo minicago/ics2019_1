@@ -12,7 +12,7 @@ _Context* __am_irq_handle(_Context *c) {
     // for(int i=0; i<32; i++){
     //   printf("%d %x\n",i, c->gpr[i]);
     // }
-    // printf("%x\n",c->cause);
+    printf("%x\n",c->cause);
     switch (c->cause) {
       case -1 :
         ev.event = _EVENT_YIELD;
