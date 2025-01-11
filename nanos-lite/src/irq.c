@@ -30,22 +30,7 @@ static _Context* do_event(_Event e, _Context* c) {
       break;
 
     case _EVENT_SYSCALL:
-      switch (c->gpr[10])
-      {
-      case 0:
-        Log("%x",c->gpr[11]);
-        _halt(c->gpr[11]);
-        break;
-      
-      case 1:
-        Log("%x",c->gpr[11]);
-        _yield();
-        break;
-      default:
-        break;
-      }
-      
-    
+      do_syscall();
       break;
     default: panic("Unhandled event ID = %d", e.event);
   }
