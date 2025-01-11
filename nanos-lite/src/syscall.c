@@ -33,9 +33,9 @@ _Context* do_syscall(_Context *c) {
     case SYS_yield:
         sys_yield();
         break;
-    // case SYS_write : 
-    //     c->GPRx = sys_write(c->GPR2, (void*)c->GPR3, c->GPR4);
-    //     break;
+    case SYS_write : 
+        // c->GPRx = sys_write(c->GPR2, (void*)c->GPR3, c->GPR4);
+        break;
     case SYS_brk :
         c->GPRx = sys_sbrk(c->GPR2);
         break;
