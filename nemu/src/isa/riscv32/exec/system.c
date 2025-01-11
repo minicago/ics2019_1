@@ -4,7 +4,7 @@ make_EHelper(ecall){
     if(decinfo.isa.instr.rs2 == 0){
          raise_intr(reg_l(17), *pc);
     } else {
-        Log("%x",cpu.sepc);
+        // Log("%x",cpu.sepc);
         rtl_jr(&cpu.sepc);
     }
    
