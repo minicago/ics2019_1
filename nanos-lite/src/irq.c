@@ -1,7 +1,7 @@
 #include "common.h"
 
 static _Context* do_event(_Event e, _Context* c) {
-  Log("%d",c->gpr[17]);
+  _Context* next = c;
   switch (e.event) {
     case _EVENT_YIELD:
       printf("YIELD!");
@@ -12,8 +12,7 @@ static _Context* do_event(_Event e, _Context* c) {
       break;
     default: panic("Unhandled event ID = %d", e.event);
   }
-
-  return NULL;
+  return next;
 }
 
 void init_irq(void) {
