@@ -7,9 +7,9 @@ void raise_intr(uint32_t NO, vaddr_t epc) {
     cpu.sepc = epc;
     cpu.scause = NO;
     // cpu.sstatus = 0;
-    for(int i=0; i<32; i++){
-      printf("%d %x\n",i, cpu.gpr[i]._32);
-    }    
+    // for(int i=0; i<32; i++){
+    //   printf("%d %x\n",i, cpu.gpr[i]._32);
+    // }    
     rtl_jr(&cpu.stvec);  
 }
 
