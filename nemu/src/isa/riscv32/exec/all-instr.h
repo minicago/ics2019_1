@@ -43,7 +43,7 @@ make_EHelper(jal);
 make_EHelper(jalr);
 
 make_EHelper(ecall);
-make_EHelper(eret);
+// make_EHelper(sret);
 make_EHelper(CSRRW);
 make_EHelper(CSRRS);
 make_EHelper(CSRRC);

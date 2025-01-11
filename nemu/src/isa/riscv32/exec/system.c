@@ -1,13 +1,18 @@
 #include "cpu/exec.h"
 
 make_EHelper(ecall){
-    raise_intr(reg_l(17), *pc);
+    if(decinfo.isa.instr.rs1 == 0){
+         raise_intr(reg_l(17), *pc);
+    } else {
+        rtl_jr(&cpu.sepc);
+    }
+   
 }
 
-make_EHelper(eret){
-    Log("%x",cpu.sepc);
-    rtl_jr(&cpu.sepc);
-}
+// make_EHelper(sret){
+//     Log("%x",cpu.sepc);
+//     rtl_jr(&cpu.sepc);
+// }
 
 make_EHelper(CSRRW){
     rtl_li (&reg_l(id_dest->reg)  , *CSR(id_src2->val));
