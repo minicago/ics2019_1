@@ -13,7 +13,7 @@ uint32_t sys_write(int fd, void* buf, size_t count) {
   for(int i=0 ;i<count; i++){
     _putc(*(((char*)buf) +i));
   }
-  return 0;
+  return count;
 }
 
 uint32_t sys_sbrk(intptr_t new_brk) {
@@ -37,7 +37,6 @@ _Context* do_syscall(_Context *c) {
         break;
     case SYS_brk :
         c->GPRx = sys_sbrk((intptr_t)c->GPR2);
-        // printf("ok!");
         break;
     default: panic("Unhandled syscall ID = %d", a[0]);
   }
