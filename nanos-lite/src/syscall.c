@@ -10,7 +10,6 @@ void sys_yield(){
 }
 
 uint32_t sys_write(int fd, void* buf, size_t count) {
-  printf("%s\n",buf);
   for(int i=0 ;i<count; i++){
     _putc(*(((char*)buf) +i));
   }
@@ -24,20 +23,23 @@ uint32_t sys_sbrk(intptr_t new_brk) {
 _Context* do_syscall(_Context *c) {
   uintptr_t a[4];
   a[0] = c->GPR1;
+  a[1] = c->GPR2;
+  a[2] = c->GPR3;
+  a[3] = c->GPR3;
   Log("%d",a[0]);
 
   switch (a[0]) {
     case SYS_exit:
-        sys_exit(c->GPR2);
+        sys_exit(a[1]);
         break;
     case SYS_yield:
         sys_yield();
         break;
     case SYS_write : 
-        c->GPRx = sys_write(c->GPR2, (void*)c->GPR3, c->GPR4);
+        c->GPRx = sys_write(a[1], (void*)a[2], a[3]);
         break;
     case SYS_brk :
-        c->GPRx = sys_sbrk((intptr_t)c->GPR2);
+        c->GPRx = sys_sbrk((intptr_t)a[1]);
         break;
     default: panic("Unhandled syscall ID = %d", a[0]);
   }
