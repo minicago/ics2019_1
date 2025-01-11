@@ -2,14 +2,18 @@
 #include "syscall.h"
 
 void sys_exit(_Context *c){
-  uintptr_t a[4];
-  a[0] = c->GPR1;
-  a[1] = c->GPR2;
-  _halt(a[1]);
+  _halt(c->GPR2);
 }
 
 void sys_yield(_Context *c){
   _yield();
+}
+
+extern char end;
+static intptr_t cur_brk = (intptr_t)&end;
+
+void *sys_sbrk(_Context *c) {
+  return 0;
 }
 
 _Context* do_syscall(_Context *c) {
@@ -27,9 +31,9 @@ _Context* do_syscall(_Context *c) {
     // case SYS_write : 
     //     c->GPRx = 0;
     //     break;
-    // case SYS_brk :
-    //     c->GPRx = 0;
-    //     break;
+    case SYS_brk :
+        c->GPRx = (uint32_t) sys_sbrk(c);
+        break;
     default: panic("Unhandled syscall ID = %d", a[0]);
   }
 
