@@ -1,18 +1,23 @@
 #include "common.h"
 #include "syscall.h"
 
-void sys_exit(_Context *c){
-  _halt(c->GPR2);
+void sys_exit(int status){
+  _halt(status);
 }
 
-void sys_yield(_Context *c){
+void sys_yield(){
   _yield();
 }
 
-extern char end;
-static intptr_t cur_brk = (intptr_t)&end;
+uint32_t sys_write(int fd, void* buf, size_t count) {
+  for(int i=0 ;i<count; i++){
+    _putc(*(((char*)buf) +i));
+  }
+  return 0;
+}
 
-void *sys_sbrk(_Context *c) {
+uint32_t sys_sbrk(intptr_t new_brk) {
+
   return 0;
 }
 
@@ -23,16 +28,16 @@ _Context* do_syscall(_Context *c) {
 
   switch (a[0]) {
     case SYS_exit:
-        sys_exit(c);
+        sys_exit(c->GPR2);
         break;
     case SYS_yield:
-        sys_yield(c);
+        sys_yield();
         break;
-    // case SYS_write : 
-    //     c->GPRx = 0;
-    //     break;
+    case SYS_write : 
+        c->GPRx = sys_write(c->GPR2, (void*)c->GPR3, c->GPR4);
+        break;
     case SYS_brk :
-        c->GPRx = (uint32_t) sys_sbrk(c);
+        c->GPRx = sys_sbrk(c->GPR2);
         break;
     default: panic("Unhandled syscall ID = %d", a[0]);
   }
