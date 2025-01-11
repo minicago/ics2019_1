@@ -4,7 +4,5 @@
 extern int _syscall_(int, uintptr_t, uintptr_t, uintptr_t);
 
 int main() {
-  int a1=0;
-  // printf("%d\n",a1);
-  return _syscall_(SYS_yield, a1, 0, 0);
+  return _syscall_(SYS_yield, 0, 0, 0);
 }
