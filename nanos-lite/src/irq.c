@@ -28,10 +28,11 @@ static _Context* do_event(_Event e, _Context* c) {
     case _EVENT_YIELD:
       printf("YIELD!");
       break;
+
+    case _EVENT_SYSCALL:
     for(int i=0; i<32; i++){
       Log("%d %x",i, c->gpr[i]);
     }
-    case _EVENT_SYSCALL:
       switch (c->gpr[10])
       {
       case SYS_exit:
