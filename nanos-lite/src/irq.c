@@ -30,17 +30,15 @@ static _Context* do_event(_Event e, _Context* c) {
       break;
 
     case _EVENT_SYSCALL:
-    for(int i=0; i<32; i++){
-      Log("%d %x",i, c->gpr[i]);
-    }
       switch (c->gpr[10])
       {
-      case SYS_exit:
+      case 0:
         Log("%x",c->gpr[11]);
         _halt(c->gpr[11]);
         break;
       
-      case SYS_yield:
+      case 1:
+        Log("%x",c->gpr[11]);
         _yield();
         break;
       default:
