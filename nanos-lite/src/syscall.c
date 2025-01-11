@@ -23,7 +23,7 @@ uint32_t sys_sbrk(intptr_t new_brk) {
 _Context* do_syscall(_Context *c) {
   uintptr_t a[4];
   a[0] = c->GPR1;
-  // Log("%d %d %d",a[0],SYS_exit, SYS_yield);
+  Log("%d",a[0]);
 
   switch (a[0]) {
     case SYS_exit:
