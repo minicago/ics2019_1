@@ -2,6 +2,7 @@
 #define __FS_H__
 
 #include "common.h"
+#define RAMDISK_LOAD
 
 #ifndef SEEK_SET
 enum {SEEK_SET, SEEK_CUR, SEEK_END};
