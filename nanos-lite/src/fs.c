@@ -73,7 +73,7 @@ size_t fs_write(int fd, const void *buf, size_t len) {
   size_t ret = 0;
   if (fd == 1 || fd == 2) {
     for (int i = 0; i < len; i++) {
-      _putc(buf + i);
+      _putc(*((char*)(buf) + i));
     }
     ret = len;
   }
