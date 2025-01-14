@@ -88,7 +88,7 @@ off_t _lseek(int fd, off_t offset, int whence) {
 }
 
 int _execve(const char *fname, char * const argv[], char *const envp[]) {
-  naive_uload(NULL, fname);
+  return _syscall_(SYS_execve, fname, argv, envp);
   return 0;
 }
 
