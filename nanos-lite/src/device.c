@@ -6,7 +6,9 @@ size_t serial_write(const void *buf, size_t offset, size_t len) {
   for (int i = 0; i < len; i++) {
     _putc(cbuf[i]);
   }
+  Log("fin");
   return len;
+
 }
 
 #define NAME(key) \
