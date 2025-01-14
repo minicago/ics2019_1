@@ -29,16 +29,22 @@ static const char *keyname[256] __attribute__((used)) = {
 };
 
 size_t events_read(void *buf, size_t offset, size_t len) {
-  _DEV_INPUT_KBD_t key;
-  _io_read(_DEV_INPUT, _DEVREG_INPUT_KBD, &key, len);
-  Log("%d", key.keycode);
-  int ret = 0;
-  if (key.keycode == _KEY_NONE) {
-    *(char *)buf = '\0';
-  } else {
-    ret = sprintf((char *)buf, "%s %s\n\0", key.keydown ? "kd" : "ku", keyname[key.keycode]);
+  int key=read_key();
+  int flag=0;
+  if(key&0x8000){
+    key^=0x8000;
+    flag=1;
   }
-  return ret;
+  if(key!=_KEY_NONE){
+    if(flag)
+      len=sprintf(buf,"kd %s\n",keyname[key]);
+    else
+      len=sprintf(buf,"ku %s\n",keyname[key]);
+  }
+  else{
+    len=sprintf(buf,"t %u\n",uptime());
+  }
+  return len;
 }
 
 static char dispinfo[128] __attribute__((used)) = {};
