@@ -29,6 +29,7 @@ static const char *keyname[256] __attribute__((used)) = {
 };
 
 size_t events_read(void *buf, size_t offset, size_t len) {
+  Log("chisini");
   _DEV_INPUT_KBD_t *kbd = (_DEV_INPUT_KBD_t *)buf;
   int k = _KEY_NONE;
 
