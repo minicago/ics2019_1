@@ -31,7 +31,7 @@ static Finfo file_table[] __attribute__((used)) = {
   {"stdin", 0, 0, 0, invalid_read, invalid_write},
   {"stdout", 0, 0, 0, invalid_read, serial_write},
   {"stderr", 0, 0, 0, invalid_read, serial_write},
-  {"/dev/events", 0 ,0,0, events_read,invalid_write},
+  {"/dev/events", 0 ,0, 0, events_read,invalid_write},
 #include "files.h"
 };
 
@@ -56,7 +56,7 @@ int fs_open(const char *pathname, int flags, int mode) {
 size_t fs_read(int fd, void *buf, size_t len) {
   
   if (file_table[fd].read) {
-    Log("%x %x",fd, file_table[fd].read);
+    // Log("%x %x",fd, file_table[fd].read);
     return file_table[fd].read(buf, file_table[fd].open_offset , len);
   }
   

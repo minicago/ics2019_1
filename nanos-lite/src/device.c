@@ -29,21 +29,10 @@ static const char *keyname[256] __attribute__((used)) = {
 };
 
 size_t events_read(void *buf, size_t offset, size_t len) {
-  Log("chisini");
-  _DEV_INPUT_KBD_t *kbd = (_DEV_INPUT_KBD_t *)buf;
-  int k = _KEY_NONE;
+  _DEV_INPUT_KBD_t key;
+  _io_read(_DEV_INPUT, _DEVREG_INPUT_KBD, buf, len);
 
-  // SDL_LockMutex(key_queue_lock);
-  if (key_f != key_r) {
-    k = key_queue[key_f];
-    key_f = (key_f + 1) % KEY_QUEUE_LEN;
-  }
-  // SDL_UnlockMutex(key_queue_lock);
-
-  kbd->keydown = (k & KEYDOWN_MASK ? 1 : 0);
-  kbd->keycode = k & ~KEYDOWN_MASK;
-
-  return sizeof(_DEV_INPUT_KBD_t);
+  return len;
 }
 
 static char dispinfo[128] __attribute__((used)) = {};
