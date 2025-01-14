@@ -70,8 +70,10 @@ size_t fs_read(int fd, void *buf, size_t len) {
 }
 
 size_t fs_write(int fd, const void *buf, size_t len) {
+  
   size_t ret = 0;
   if (file_table[fd].write) {
+    Log("write");
     return file_table[fd].write(fd, buf, len);
   } else {
     assert(file_table[fd].open_offset + len <= file_table[fd].size);
