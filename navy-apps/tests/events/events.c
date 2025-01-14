@@ -9,7 +9,8 @@ int main() {
     char buf[256];
     char *p = buf, ch;
     while ((ch = fgetc(fp)) != -1) {
-      printf("Start to receive events...\n");
+      printf("%c\n",ch);
+      return 0;
       *p ++ = ch;
       if(ch == '\n') {
         *p = '\0';
