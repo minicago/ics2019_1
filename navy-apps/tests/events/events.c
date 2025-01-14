@@ -9,15 +9,15 @@ int main() {
     char buf[256];
     char *p = buf, ch;
     while ((ch = fgetc(fp)) != -1) {
-      printf("%x\n",ch);
-      return 0;
+      
+      // return 0;
       *p ++ = ch;
       if(ch == '\n') {
         *p = '\0';
         break;
       }
     }
-
+    printf("%s\n",p);
     int is_time = buf[0] == 't';
     time += is_time;
     if (!is_time) {
