@@ -25,11 +25,7 @@ void init_proc() {
   Log("Initializing processes...");
 
   // load program here
-#ifdef RAMDISK_LOAD
-  naive_uload(NULL, NULL);
-#else
-  naive_uload(NULL, "hello");
-#endif
+  naive_uload(NULL, "/bin/hello");
 
 }
 
