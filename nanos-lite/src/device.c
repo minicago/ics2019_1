@@ -3,7 +3,7 @@
 
 size_t serial_write(const void *buf, size_t offset, size_t len) {
   char *cbuf = (char *)buf;
-  Log("%x", cbuf);
+  // Log("%x", cbuf);
   for (int i = 0; i < len; i++) {
     _putc(cbuf[i]);
   }
