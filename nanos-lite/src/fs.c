@@ -49,6 +49,7 @@ int fs_open(const char *pathname, int flags, int mode) {
       return i;
     }
   }
+  panic("%s not found", pathname);
   return 0;
 }
 
