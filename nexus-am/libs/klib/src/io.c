@@ -25,9 +25,9 @@ void draw_rect(uint32_t *pixels, int x, int y, int w, int h) {
     .x = x, .y = y, .w = w, .h = h,
     .sync = 0,
   };
-  printf("draw!");
+  // printf("draw!");
   _io_write(_DEV_VIDEO, _DEVREG_VIDEO_FBCTL, &ctl, sizeof(ctl));
-  printf("fin");
+  // printf("fin");
 }
 
 void draw_sync() {
