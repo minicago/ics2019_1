@@ -30,9 +30,14 @@ static const char *keyname[256] __attribute__((used)) = {
 
 size_t events_read(void *buf, size_t offset, size_t len) {
   _DEV_INPUT_KBD_t key;
-  _io_read(_DEV_INPUT, _DEVREG_INPUT_KBD, buf, len);
-
-  return len;
+  _io_read(_DEV_INPUT, _DEVREG_INPUT_KBD, &key, len);
+  int ret = 0;
+  if (key.keycode == _KEY_NONE) {
+    *(char *)buf = '\0';
+  } else {
+    ret = sprintf((char *)buf, "%s %s\n\0", key.keydown ? "kd" : "ku", keyname[key.keycode]);
+  }
+  return ret;
 }
 
 static char dispinfo[128] __attribute__((used)) = {};
