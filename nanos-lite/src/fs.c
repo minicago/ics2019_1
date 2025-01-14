@@ -71,10 +71,10 @@ size_t fs_read(int fd, void *buf, size_t len) {
 
 size_t fs_write(int fd, const void *buf, size_t len) {
   size_t ret = 0;
+  Log("%d",fd);
   if (file_table[fd].write) {
     return file_table[fd].write(fd, buf, len);
-  }
-  else {
+  } else {
     assert(file_table[fd].open_offset + len <= file_table[fd].size);
     ret = ramdisk_write(buf, file_table[fd].disk_offset + file_table[fd].open_offset, len);
     file_table[fd].open_offset += len;
