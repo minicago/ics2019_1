@@ -71,7 +71,7 @@ size_t fs_read(int fd, void *buf, size_t len) {
 
 size_t fs_write(int fd, const void *buf, size_t len) {
   size_t ret = 0;
-  Log("%d",fd);
+  Log("%d %x",fd, file_table[fd].write);
   if (file_table[fd].write) {
     return file_table[fd].write(fd, buf, len);
   } else {
