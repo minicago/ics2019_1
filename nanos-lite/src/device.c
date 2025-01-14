@@ -31,6 +31,7 @@ static const char *keyname[256] __attribute__((used)) = {
 size_t events_read(void *buf, size_t offset, size_t len) {
   _DEV_INPUT_KBD_t key;
   _io_read(_DEV_INPUT, _DEVREG_INPUT_KBD, &key, len);
+  Log("%d", key.keycode);
   int ret = 0;
   if (key.keycode == _KEY_NONE) {
     *(char *)buf = '\0';
