@@ -57,8 +57,8 @@ size_t dispinfo_read(void *buf, size_t offset, size_t len) {
 }
 
 size_t fb_write(const void *buf, size_t offset, size_t len) {
-  offset /= 8;
-  len /= 8;
+  offset /= 2;
+  len /= 2;
   uint32_t* pixels = (uint32_t *)buf;
   uint32_t x = offset % screen_width();
   uint32_t y = offset / screen_width();
